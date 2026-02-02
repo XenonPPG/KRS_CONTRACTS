@@ -1,0 +1,16 @@
+services:
+  protogen:
+    build:
+      context: .
+      dockerfile: gen.proto.Dockerfile
+    volumes:
+      - .:/workspace
+    entrypoint: []
+    command: >
+      /bin/sh -c "find proto -name '*.proto' -print0 
+      | xargs -0 protoc -I=. 
+      --experimental_allow_proto3_optional
+      --go_out=. 
+      --go_opt=module=github.com/XenonPPG/KRS_CONTRACTS 
+      --go-grpc_out=. 
+      --go-grpc_opt=module=github.com/XenonPPG/KRS_CONTRACTS"
