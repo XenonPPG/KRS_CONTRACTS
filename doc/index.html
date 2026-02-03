@@ -199,6 +199,10 @@
                 </li>
               
                 <li>
+                  <a href="#db_service.IsValidResponse"><span class="badge">M</span>IsValidResponse</a>
+                </li>
+              
+                <li>
                   <a href="#db_service.UpdatePasswordRequest"><span class="badge">M</span>UpdatePasswordRequest</a>
                 </li>
               
@@ -208,6 +212,10 @@
               
                 <li>
                   <a href="#db_service.User"><span class="badge">M</span>User</a>
+                </li>
+              
+                <li>
+                  <a href="#db_service.VerifyPasswordRequest"><span class="badge">M</span>VerifyPasswordRequest</a>
                 </li>
               
               
@@ -373,6 +381,30 @@
 
         
       
+        <h3 id="db_service.IsValidResponse">IsValidResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>valid</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="db_service.UpdatePasswordRequest">UpdatePasswordRequest</h3>
         <p></p>
 
@@ -473,6 +505,37 @@
 
         
       
+        <h3 id="db_service.VerifyPasswordRequest">VerifyPasswordRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>password</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
 
       
 
@@ -526,6 +589,13 @@
                 <td>DeleteUser</td>
                 <td><a href="#db_service.DeleteUserRequest">DeleteUserRequest</a></td>
                 <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>VerifyPassword</td>
+                <td><a href="#db_service.VerifyPasswordRequest">VerifyPasswordRequest</a></td>
+                <td><a href="#db_service.IsValidResponse">IsValidResponse</a></td>
                 <td><p></p></td>
               </tr>
             

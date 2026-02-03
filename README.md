@@ -9,9 +9,11 @@
     - [GetAllUsersRequest](#db_service-GetAllUsersRequest)
     - [GetAllUsersResponse](#db_service-GetAllUsersResponse)
     - [GetUserRequest](#db_service-GetUserRequest)
+    - [IsValidResponse](#db_service-IsValidResponse)
     - [UpdatePasswordRequest](#db_service-UpdatePasswordRequest)
     - [UpdateUserRequest](#db_service-UpdateUserRequest)
     - [User](#db_service-User)
+    - [VerifyPasswordRequest](#db_service-VerifyPasswordRequest)
   
     - [DatabaseService](#db_service-DatabaseService)
   
@@ -104,6 +106,21 @@
 
 
 
+<a name="db_service-IsValidResponse"></a>
+
+### IsValidResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| valid | [bool](#bool) |  |  |
+
+
+
+
+
+
 <a name="db_service-UpdatePasswordRequest"></a>
 
 ### UpdatePasswordRequest
@@ -152,6 +169,22 @@
 
 
 
+
+<a name="db_service-VerifyPasswordRequest"></a>
+
+### VerifyPasswordRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+| password | [string](#string) |  |  |
+
+
+
+
+
  
 
  
@@ -172,6 +205,7 @@
 | UpdateUser | [UpdateUserRequest](#db_service-UpdateUserRequest) | [User](#db_service-User) |  |
 | UpdatePassword | [UpdatePasswordRequest](#db_service-UpdatePasswordRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
 | DeleteUser | [DeleteUserRequest](#db_service-DeleteUserRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
+| VerifyPassword | [VerifyPasswordRequest](#db_service-VerifyPasswordRequest) | [IsValidResponse](#db_service-IsValidResponse) |  |
 
  
 

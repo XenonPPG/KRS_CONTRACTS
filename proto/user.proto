@@ -13,6 +13,7 @@ service DatabaseService {
   rpc UpdateUser(UpdateUserRequest) returns (User);
   rpc UpdatePassword(UpdatePasswordRequest) returns (google.protobuf.Empty);
   rpc DeleteUser(DeleteUserRequest) returns (google.protobuf.Empty);
+  rpc VerifyPassword(VerifyPasswordRequest) returns (IsValidResponse);
 }
 
 message User {
@@ -52,4 +53,13 @@ message UpdatePasswordRequest {
 
 message DeleteUserRequest {
   int64 id = 1;
+}
+
+message VerifyPasswordRequest {
+  int64 id = 1;
+  string password = 2;
+}
+
+message IsValidResponse {
+  bool valid = 1;
 }

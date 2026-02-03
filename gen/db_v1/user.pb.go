@@ -430,6 +430,102 @@ func (x *DeleteUserRequest) GetId() int64 {
 	return 0
 }
 
+type VerifyPasswordRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VerifyPasswordRequest) Reset() {
+	*x = VerifyPasswordRequest{}
+	mi := &file_proto_user_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VerifyPasswordRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VerifyPasswordRequest) ProtoMessage() {}
+
+func (x *VerifyPasswordRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_user_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VerifyPasswordRequest.ProtoReflect.Descriptor instead.
+func (*VerifyPasswordRequest) Descriptor() ([]byte, []int) {
+	return file_proto_user_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *VerifyPasswordRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *VerifyPasswordRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+type IsValidResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Valid         bool                   `protobuf:"varint,1,opt,name=valid,proto3" json:"valid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IsValidResponse) Reset() {
+	*x = IsValidResponse{}
+	mi := &file_proto_user_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IsValidResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsValidResponse) ProtoMessage() {}
+
+func (x *IsValidResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_user_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsValidResponse.ProtoReflect.Descriptor instead.
+func (*IsValidResponse) Descriptor() ([]byte, []int) {
+	return file_proto_user_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *IsValidResponse) GetValid() bool {
+	if x != nil {
+		return x.Valid
+	}
+	return false
+}
+
 var File_proto_user_proto protoreflect.FileDescriptor
 
 const file_proto_user_proto_rawDesc = "" +
@@ -459,7 +555,12 @@ const file_proto_user_proto_rawDesc = "" +
 	"\voldPassword\x18\x02 \x01(\tR\voldPassword\x12 \n" +
 	"\vnewPassword\x18\x03 \x01(\tR\vnewPassword\"#\n" +
 	"\x11DeleteUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id2\xaa\x03\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"C\n" +
+	"\x15VerifyPasswordRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1a\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"'\n" +
+	"\x0fIsValidResponse\x12\x14\n" +
+	"\x05valid\x18\x01 \x01(\bR\x05valid2\xfc\x03\n" +
 	"\x0fDatabaseService\x12=\n" +
 	"\n" +
 	"CreateUser\x12\x1d.db_service.CreateUserRequest\x1a\x10.db_service.User\x12N\n" +
@@ -469,7 +570,8 @@ const file_proto_user_proto_rawDesc = "" +
 	"UpdateUser\x12\x1d.db_service.UpdateUserRequest\x1a\x10.db_service.User\x12K\n" +
 	"\x0eUpdatePassword\x12!.db_service.UpdatePasswordRequest\x1a\x16.google.protobuf.Empty\x12C\n" +
 	"\n" +
-	"DeleteUser\x12\x1d.db_service.DeleteUserRequest\x1a\x16.google.protobuf.EmptyB3Z1github.com/XenonPPG/KRS_CONTRACTS/gen/db_v1;db_v1b\x06proto3"
+	"DeleteUser\x12\x1d.db_service.DeleteUserRequest\x1a\x16.google.protobuf.Empty\x12P\n" +
+	"\x0eVerifyPassword\x12!.db_service.VerifyPasswordRequest\x1a\x1b.db_service.IsValidResponseB3Z1github.com/XenonPPG/KRS_CONTRACTS/gen/db_v1;db_v1b\x06proto3"
 
 var (
 	file_proto_user_proto_rawDescOnce sync.Once
@@ -483,7 +585,7 @@ func file_proto_user_proto_rawDescGZIP() []byte {
 	return file_proto_user_proto_rawDescData
 }
 
-var file_proto_user_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_proto_user_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_proto_user_proto_goTypes = []any{
 	(*User)(nil),                  // 0: db_service.User
 	(*CreateUserRequest)(nil),     // 1: db_service.CreateUserRequest
@@ -493,27 +595,31 @@ var file_proto_user_proto_goTypes = []any{
 	(*UpdateUserRequest)(nil),     // 5: db_service.UpdateUserRequest
 	(*UpdatePasswordRequest)(nil), // 6: db_service.UpdatePasswordRequest
 	(*DeleteUserRequest)(nil),     // 7: db_service.DeleteUserRequest
-	(*emptypb.Empty)(nil),         // 8: google.protobuf.Empty
+	(*VerifyPasswordRequest)(nil), // 8: db_service.VerifyPasswordRequest
+	(*IsValidResponse)(nil),       // 9: db_service.IsValidResponse
+	(*emptypb.Empty)(nil),         // 10: google.protobuf.Empty
 }
 var file_proto_user_proto_depIdxs = []int32{
-	0, // 0: db_service.GetAllUsersResponse.users:type_name -> db_service.User
-	1, // 1: db_service.DatabaseService.CreateUser:input_type -> db_service.CreateUserRequest
-	2, // 2: db_service.DatabaseService.GetAllUsers:input_type -> db_service.GetAllUsersRequest
-	4, // 3: db_service.DatabaseService.GetUser:input_type -> db_service.GetUserRequest
-	5, // 4: db_service.DatabaseService.UpdateUser:input_type -> db_service.UpdateUserRequest
-	6, // 5: db_service.DatabaseService.UpdatePassword:input_type -> db_service.UpdatePasswordRequest
-	7, // 6: db_service.DatabaseService.DeleteUser:input_type -> db_service.DeleteUserRequest
-	0, // 7: db_service.DatabaseService.CreateUser:output_type -> db_service.User
-	3, // 8: db_service.DatabaseService.GetAllUsers:output_type -> db_service.GetAllUsersResponse
-	0, // 9: db_service.DatabaseService.GetUser:output_type -> db_service.User
-	0, // 10: db_service.DatabaseService.UpdateUser:output_type -> db_service.User
-	8, // 11: db_service.DatabaseService.UpdatePassword:output_type -> google.protobuf.Empty
-	8, // 12: db_service.DatabaseService.DeleteUser:output_type -> google.protobuf.Empty
-	7, // [7:13] is the sub-list for method output_type
-	1, // [1:7] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	0,  // 0: db_service.GetAllUsersResponse.users:type_name -> db_service.User
+	1,  // 1: db_service.DatabaseService.CreateUser:input_type -> db_service.CreateUserRequest
+	2,  // 2: db_service.DatabaseService.GetAllUsers:input_type -> db_service.GetAllUsersRequest
+	4,  // 3: db_service.DatabaseService.GetUser:input_type -> db_service.GetUserRequest
+	5,  // 4: db_service.DatabaseService.UpdateUser:input_type -> db_service.UpdateUserRequest
+	6,  // 5: db_service.DatabaseService.UpdatePassword:input_type -> db_service.UpdatePasswordRequest
+	7,  // 6: db_service.DatabaseService.DeleteUser:input_type -> db_service.DeleteUserRequest
+	8,  // 7: db_service.DatabaseService.VerifyPassword:input_type -> db_service.VerifyPasswordRequest
+	0,  // 8: db_service.DatabaseService.CreateUser:output_type -> db_service.User
+	3,  // 9: db_service.DatabaseService.GetAllUsers:output_type -> db_service.GetAllUsersResponse
+	0,  // 10: db_service.DatabaseService.GetUser:output_type -> db_service.User
+	0,  // 11: db_service.DatabaseService.UpdateUser:output_type -> db_service.User
+	10, // 12: db_service.DatabaseService.UpdatePassword:output_type -> google.protobuf.Empty
+	10, // 13: db_service.DatabaseService.DeleteUser:output_type -> google.protobuf.Empty
+	9,  // 14: db_service.DatabaseService.VerifyPassword:output_type -> db_service.IsValidResponse
+	8,  // [8:15] is the sub-list for method output_type
+	1,  // [1:8] is the sub-list for method input_type
+	1,  // [1:1] is the sub-list for extension type_name
+	1,  // [1:1] is the sub-list for extension extendee
+	0,  // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_proto_init() }
@@ -527,7 +633,7 @@ func file_proto_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_user_proto_rawDesc), len(file_proto_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

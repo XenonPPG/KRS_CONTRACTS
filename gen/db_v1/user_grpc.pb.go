@@ -26,6 +26,7 @@ const (
 	DatabaseService_UpdateUser_FullMethodName     = "/db_service.DatabaseService/UpdateUser"
 	DatabaseService_UpdatePassword_FullMethodName = "/db_service.DatabaseService/UpdatePassword"
 	DatabaseService_DeleteUser_FullMethodName     = "/db_service.DatabaseService/DeleteUser"
+	DatabaseService_VerifyPassword_FullMethodName = "/db_service.DatabaseService/VerifyPassword"
 )
 
 // DatabaseServiceClient is the client API for DatabaseService service.
@@ -38,6 +39,7 @@ type DatabaseServiceClient interface {
 	UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*User, error)
 	UpdatePassword(ctx context.Context, in *UpdatePasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	VerifyPassword(ctx context.Context, in *VerifyPasswordRequest, opts ...grpc.CallOption) (*IsValidResponse, error)
 }
 
 type databaseServiceClient struct {
@@ -108,6 +110,16 @@ func (c *databaseServiceClient) DeleteUser(ctx context.Context, in *DeleteUserRe
 	return out, nil
 }
 
+func (c *databaseServiceClient) VerifyPassword(ctx context.Context, in *VerifyPasswordRequest, opts ...grpc.CallOption) (*IsValidResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IsValidResponse)
+	err := c.cc.Invoke(ctx, DatabaseService_VerifyPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DatabaseServiceServer is the server API for DatabaseService service.
 // All implementations must embed UnimplementedDatabaseServiceServer
 // for forward compatibility.
@@ -118,6 +130,7 @@ type DatabaseServiceServer interface {
 	UpdateUser(context.Context, *UpdateUserRequest) (*User, error)
 	UpdatePassword(context.Context, *UpdatePasswordRequest) (*emptypb.Empty, error)
 	DeleteUser(context.Context, *DeleteUserRequest) (*emptypb.Empty, error)
+	VerifyPassword(context.Context, *VerifyPasswordRequest) (*IsValidResponse, error)
 	mustEmbedUnimplementedDatabaseServiceServer()
 }
 
@@ -145,6 +158,9 @@ func (UnimplementedDatabaseServiceServer) UpdatePassword(context.Context, *Updat
 }
 func (UnimplementedDatabaseServiceServer) DeleteUser(context.Context, *DeleteUserRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteUser not implemented")
+}
+func (UnimplementedDatabaseServiceServer) VerifyPassword(context.Context, *VerifyPasswordRequest) (*IsValidResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method VerifyPassword not implemented")
 }
 func (UnimplementedDatabaseServiceServer) mustEmbedUnimplementedDatabaseServiceServer() {}
 func (UnimplementedDatabaseServiceServer) testEmbeddedByValue()                         {}
@@ -275,6 +291,24 @@ func _DatabaseService_DeleteUser_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DatabaseService_VerifyPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VerifyPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).VerifyPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_VerifyPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).VerifyPassword(ctx, req.(*VerifyPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DatabaseService_ServiceDesc is the grpc.ServiceDesc for DatabaseService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -305,6 +339,10 @@ var DatabaseService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteUser",
 			Handler:    _DatabaseService_DeleteUser_Handler,
+		},
+		{
+			MethodName: "VerifyPassword",
+			Handler:    _DatabaseService_VerifyPassword_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
