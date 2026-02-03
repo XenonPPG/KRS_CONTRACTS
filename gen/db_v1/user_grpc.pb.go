@@ -30,10 +30,10 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DatabaseServiceClient interface {
-	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*UserResponse, error)
+	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*User, error)
 	GetAllUsers(ctx context.Context, in *GetAllUsersRequest, opts ...grpc.CallOption) (*GetAllUsersResponse, error)
-	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*UserResponse, error)
-	UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UserResponse, error)
+	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*User, error)
+	UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*User, error)
 	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
 }
 
@@ -45,9 +45,9 @@ func NewDatabaseServiceClient(cc grpc.ClientConnInterface) DatabaseServiceClient
 	return &databaseServiceClient{cc}
 }
 
-func (c *databaseServiceClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*UserResponse, error) {
+func (c *databaseServiceClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*User, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserResponse)
+	out := new(User)
 	err := c.cc.Invoke(ctx, DatabaseService_CreateUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -65,9 +65,9 @@ func (c *databaseServiceClient) GetAllUsers(ctx context.Context, in *GetAllUsers
 	return out, nil
 }
 
-func (c *databaseServiceClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*UserResponse, error) {
+func (c *databaseServiceClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*User, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserResponse)
+	out := new(User)
 	err := c.cc.Invoke(ctx, DatabaseService_GetUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -75,9 +75,9 @@ func (c *databaseServiceClient) GetUser(ctx context.Context, in *GetUserRequest,
 	return out, nil
 }
 
-func (c *databaseServiceClient) UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UserResponse, error) {
+func (c *databaseServiceClient) UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*User, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserResponse)
+	out := new(User)
 	err := c.cc.Invoke(ctx, DatabaseService_UpdateUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -99,10 +99,10 @@ func (c *databaseServiceClient) DeleteUser(ctx context.Context, in *DeleteUserRe
 // All implementations must embed UnimplementedDatabaseServiceServer
 // for forward compatibility.
 type DatabaseServiceServer interface {
-	CreateUser(context.Context, *CreateUserRequest) (*UserResponse, error)
+	CreateUser(context.Context, *CreateUserRequest) (*User, error)
 	GetAllUsers(context.Context, *GetAllUsersRequest) (*GetAllUsersResponse, error)
-	GetUser(context.Context, *GetUserRequest) (*UserResponse, error)
-	UpdateUser(context.Context, *UpdateUserRequest) (*UserResponse, error)
+	GetUser(context.Context, *GetUserRequest) (*User, error)
+	UpdateUser(context.Context, *UpdateUserRequest) (*User, error)
 	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
 	mustEmbedUnimplementedDatabaseServiceServer()
 }
@@ -114,16 +114,16 @@ type DatabaseServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDatabaseServiceServer struct{}
 
-func (UnimplementedDatabaseServiceServer) CreateUser(context.Context, *CreateUserRequest) (*UserResponse, error) {
+func (UnimplementedDatabaseServiceServer) CreateUser(context.Context, *CreateUserRequest) (*User, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateUser not implemented")
 }
 func (UnimplementedDatabaseServiceServer) GetAllUsers(context.Context, *GetAllUsersRequest) (*GetAllUsersResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetAllUsers not implemented")
 }
-func (UnimplementedDatabaseServiceServer) GetUser(context.Context, *GetUserRequest) (*UserResponse, error) {
+func (UnimplementedDatabaseServiceServer) GetUser(context.Context, *GetUserRequest) (*User, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUser not implemented")
 }
-func (UnimplementedDatabaseServiceServer) UpdateUser(context.Context, *UpdateUserRequest) (*UserResponse, error) {
+func (UnimplementedDatabaseServiceServer) UpdateUser(context.Context, *UpdateUserRequest) (*User, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateUser not implemented")
 }
 func (UnimplementedDatabaseServiceServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {

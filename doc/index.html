@@ -207,7 +207,7 @@
                 </li>
               
                 <li>
-                  <a href="#db_service.UserResponse"><span class="badge">M</span>UserResponse</a>
+                  <a href="#db_service.User"><span class="badge">M</span>User</a>
                 </li>
               
               
@@ -298,6 +298,30 @@
         <p></p>
 
         
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>offset</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
 
         
       
@@ -313,8 +337,15 @@
               
                 <tr>
                   <td>users</td>
-                  <td><a href="#db_service.UserResponse">UserResponse</a></td>
+                  <td><a href="#db_service.User">User</a></td>
                   <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>total_count</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -387,7 +418,7 @@
 
         
       
-        <h3 id="db_service.UserResponse">UserResponse</h3>
+        <h3 id="db_service.User">User</h3>
         <p></p>
 
         
@@ -435,7 +466,7 @@
               <tr>
                 <td>CreateUser</td>
                 <td><a href="#db_service.CreateUserRequest">CreateUserRequest</a></td>
-                <td><a href="#db_service.UserResponse">UserResponse</a></td>
+                <td><a href="#db_service.User">User</a></td>
                 <td><p></p></td>
               </tr>
             
@@ -449,14 +480,14 @@
               <tr>
                 <td>GetUser</td>
                 <td><a href="#db_service.GetUserRequest">GetUserRequest</a></td>
-                <td><a href="#db_service.UserResponse">UserResponse</a></td>
+                <td><a href="#db_service.User">User</a></td>
                 <td><p></p></td>
               </tr>
             
               <tr>
                 <td>UpdateUser</td>
                 <td><a href="#db_service.UpdateUserRequest">UpdateUserRequest</a></td>
-                <td><a href="#db_service.UserResponse">UserResponse</a></td>
+                <td><a href="#db_service.User">User</a></td>
                 <td><p></p></td>
               </tr>
             

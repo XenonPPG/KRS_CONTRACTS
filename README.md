@@ -11,7 +11,7 @@
     - [GetAllUsersResponse](#db_service-GetAllUsersResponse)
     - [GetUserRequest](#db_service-GetUserRequest)
     - [UpdateUserRequest](#db_service-UpdateUserRequest)
-    - [UserResponse](#db_service-UserResponse)
+    - [User](#db_service-User)
   
     - [DatabaseService](#db_service-DatabaseService)
   
@@ -73,6 +73,12 @@
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
+
+
 
 
 
@@ -85,7 +91,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| users | [UserResponse](#db_service-UserResponse) | repeated |  |
+| users | [User](#db_service-User) | repeated |  |
+| total_count | [int32](#int32) |  |  |
 
 
 
@@ -124,9 +131,9 @@
 
 
 
-<a name="db_service-UserResponse"></a>
+<a name="db_service-User"></a>
 
-### UserResponse
+### User
 
 
 
@@ -153,10 +160,10 @@
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateUser | [CreateUserRequest](#db_service-CreateUserRequest) | [UserResponse](#db_service-UserResponse) |  |
+| CreateUser | [CreateUserRequest](#db_service-CreateUserRequest) | [User](#db_service-User) |  |
 | GetAllUsers | [GetAllUsersRequest](#db_service-GetAllUsersRequest) | [GetAllUsersResponse](#db_service-GetAllUsersResponse) |  |
-| GetUser | [GetUserRequest](#db_service-GetUserRequest) | [UserResponse](#db_service-UserResponse) |  |
-| UpdateUser | [UpdateUserRequest](#db_service-UpdateUserRequest) | [UserResponse](#db_service-UserResponse) |  |
+| GetUser | [GetUserRequest](#db_service-GetUserRequest) | [User](#db_service-User) |  |
+| UpdateUser | [UpdateUserRequest](#db_service-UpdateUserRequest) | [User](#db_service-User) |  |
 | DeleteUser | [DeleteUserRequest](#db_service-DeleteUserRequest) | [DeleteUserResponse](#db_service-DeleteUserResponse) |  |
 
  

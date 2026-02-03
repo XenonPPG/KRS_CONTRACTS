@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type UserResponse struct {
+type User struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
@@ -29,20 +29,20 @@ type UserResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UserResponse) Reset() {
-	*x = UserResponse{}
+func (x *User) Reset() {
+	*x = User{}
 	mi := &file_proto_user_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UserResponse) String() string {
+func (x *User) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UserResponse) ProtoMessage() {}
+func (*User) ProtoMessage() {}
 
-func (x *UserResponse) ProtoReflect() protoreflect.Message {
+func (x *User) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_user_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -54,19 +54,19 @@ func (x *UserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UserResponse.ProtoReflect.Descriptor instead.
-func (*UserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use User.ProtoReflect.Descriptor instead.
+func (*User) Descriptor() ([]byte, []int) {
 	return file_proto_user_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *UserResponse) GetId() int64 {
+func (x *User) GetId() int64 {
 	if x != nil {
 		return x.Id
 	}
 	return 0
 }
 
-func (x *UserResponse) GetName() string {
+func (x *User) GetName() string {
 	if x != nil {
 		return x.Name
 	}
@@ -127,6 +127,8 @@ func (x *CreateUserRequest) GetPassword() string {
 
 type GetAllUsersRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -161,9 +163,24 @@ func (*GetAllUsersRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_proto_rawDescGZIP(), []int{2}
 }
 
+func (x *GetAllUsersRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GetAllUsersRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
 type GetAllUsersResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Users         []*UserResponse        `protobuf:"bytes,1,rep,name=users,proto3" json:"users,omitempty"`
+	Users         []*User                `protobuf:"bytes,1,rep,name=users,proto3" json:"users,omitempty"`
+	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -198,11 +215,18 @@ func (*GetAllUsersResponse) Descriptor() ([]byte, []int) {
 	return file_proto_user_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetAllUsersResponse) GetUsers() []*UserResponse {
+func (x *GetAllUsersResponse) GetUsers() []*User {
 	if x != nil {
 		return x.Users
 	}
 	return nil
+}
+
+func (x *GetAllUsersResponse) GetTotalCount() int32 {
+	if x != nil {
+		return x.TotalCount
+	}
+	return 0
 }
 
 type GetUserRequest struct {
@@ -394,16 +418,20 @@ var File_proto_user_proto protoreflect.FileDescriptor
 const file_proto_user_proto_rawDesc = "" +
 	"\n" +
 	"\x10proto/user.proto\x12\n" +
-	"db_service\"2\n" +
-	"\fUserResponse\x12\x0e\n" +
+	"db_service\"*\n" +
+	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\"C\n" +
 	"\x11CreateUserRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"\x14\n" +
-	"\x12GetAllUsersRequest\"E\n" +
-	"\x13GetAllUsersResponse\x12.\n" +
-	"\x05users\x18\x01 \x03(\v2\x18.db_service.UserResponseR\x05users\" \n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"B\n" +
+	"\x12GetAllUsersRequest\x12\x14\n" +
+	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\"^\n" +
+	"\x13GetAllUsersResponse\x12&\n" +
+	"\x05users\x18\x01 \x03(\v2\x10.db_service.UserR\x05users\x12\x1f\n" +
+	"\vtotal_count\x18\x02 \x01(\x05R\n" +
+	"totalCount\" \n" +
 	"\x0eGetUserRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"s\n" +
 	"\x11UpdateUserRequest\x12\x0e\n" +
@@ -414,14 +442,14 @@ const file_proto_user_proto_rawDesc = "" +
 	"\t_password\"#\n" +
 	"\x11DeleteUserRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"\x14\n" +
-	"\x12DeleteUserResponse2\xfd\x02\n" +
-	"\x0fDatabaseService\x12E\n" +
+	"\x12DeleteUserResponse2\xe5\x02\n" +
+	"\x0fDatabaseService\x12=\n" +
 	"\n" +
-	"CreateUser\x12\x1d.db_service.CreateUserRequest\x1a\x18.db_service.UserResponse\x12N\n" +
-	"\vGetAllUsers\x12\x1e.db_service.GetAllUsersRequest\x1a\x1f.db_service.GetAllUsersResponse\x12?\n" +
-	"\aGetUser\x12\x1a.db_service.GetUserRequest\x1a\x18.db_service.UserResponse\x12E\n" +
+	"CreateUser\x12\x1d.db_service.CreateUserRequest\x1a\x10.db_service.User\x12N\n" +
+	"\vGetAllUsers\x12\x1e.db_service.GetAllUsersRequest\x1a\x1f.db_service.GetAllUsersResponse\x127\n" +
+	"\aGetUser\x12\x1a.db_service.GetUserRequest\x1a\x10.db_service.User\x12=\n" +
 	"\n" +
-	"UpdateUser\x12\x1d.db_service.UpdateUserRequest\x1a\x18.db_service.UserResponse\x12K\n" +
+	"UpdateUser\x12\x1d.db_service.UpdateUserRequest\x1a\x10.db_service.User\x12K\n" +
 	"\n" +
 	"DeleteUser\x12\x1d.db_service.DeleteUserRequest\x1a\x1e.db_service.DeleteUserResponseB3Z1github.com/XenonPPG/KRS_CONTRACTS/gen/db_v1;db_v1b\x06proto3"
 
@@ -439,7 +467,7 @@ func file_proto_user_proto_rawDescGZIP() []byte {
 
 var file_proto_user_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_proto_user_proto_goTypes = []any{
-	(*UserResponse)(nil),        // 0: db_service.UserResponse
+	(*User)(nil),                // 0: db_service.User
 	(*CreateUserRequest)(nil),   // 1: db_service.CreateUserRequest
 	(*GetAllUsersRequest)(nil),  // 2: db_service.GetAllUsersRequest
 	(*GetAllUsersResponse)(nil), // 3: db_service.GetAllUsersResponse
@@ -449,16 +477,16 @@ var file_proto_user_proto_goTypes = []any{
 	(*DeleteUserResponse)(nil),  // 7: db_service.DeleteUserResponse
 }
 var file_proto_user_proto_depIdxs = []int32{
-	0, // 0: db_service.GetAllUsersResponse.users:type_name -> db_service.UserResponse
+	0, // 0: db_service.GetAllUsersResponse.users:type_name -> db_service.User
 	1, // 1: db_service.DatabaseService.CreateUser:input_type -> db_service.CreateUserRequest
 	2, // 2: db_service.DatabaseService.GetAllUsers:input_type -> db_service.GetAllUsersRequest
 	4, // 3: db_service.DatabaseService.GetUser:input_type -> db_service.GetUserRequest
 	5, // 4: db_service.DatabaseService.UpdateUser:input_type -> db_service.UpdateUserRequest
 	6, // 5: db_service.DatabaseService.DeleteUser:input_type -> db_service.DeleteUserRequest
-	0, // 6: db_service.DatabaseService.CreateUser:output_type -> db_service.UserResponse
+	0, // 6: db_service.DatabaseService.CreateUser:output_type -> db_service.User
 	3, // 7: db_service.DatabaseService.GetAllUsers:output_type -> db_service.GetAllUsersResponse
-	0, // 8: db_service.DatabaseService.GetUser:output_type -> db_service.UserResponse
-	0, // 9: db_service.DatabaseService.UpdateUser:output_type -> db_service.UserResponse
+	0, // 8: db_service.DatabaseService.GetUser:output_type -> db_service.User
+	0, // 9: db_service.DatabaseService.UpdateUser:output_type -> db_service.User
 	7, // 10: db_service.DatabaseService.DeleteUser:output_type -> db_service.DeleteUserResponse
 	6, // [6:11] is the sub-list for method output_type
 	1, // [1:6] is the sub-list for method input_type

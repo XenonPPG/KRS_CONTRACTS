@@ -5,14 +5,14 @@ package db_service;
 option go_package = "github.com/XenonPPG/KRS_CONTRACTS/gen/db_v1;db_v1";
 
 service DatabaseService {
-  rpc CreateUser(CreateUserRequest) returns (UserResponse);
+  rpc CreateUser(CreateUserRequest) returns (User);
   rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse);
-  rpc GetUser(GetUserRequest) returns (UserResponse);
-  rpc UpdateUser(UpdateUserRequest) returns (UserResponse);
+  rpc GetUser(GetUserRequest) returns (User);
+  rpc UpdateUser(UpdateUserRequest) returns (User);
   rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
 }
 
-message UserResponse {
+message User {
   int64 id = 1;
   string name = 2;
 }
@@ -22,10 +22,14 @@ message CreateUserRequest {
   string password = 2;
 }
 
-message GetAllUsersRequest {}
+message GetAllUsersRequest {
+  int32 limit = 1;
+  int32 offset = 2;
+}
 
 message GetAllUsersResponse {
-  repeated UserResponse users = 1;
+  repeated User users = 1;
+  int32 total_count = 2;
 }
 
 message GetUserRequest {
