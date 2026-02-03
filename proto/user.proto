@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package db_service;
 
+import "google/protobuf/empty.proto";
+
 option go_package = "github.com/XenonPPG/KRS_CONTRACTS/gen/db_v1;db_v1";
 
 service DatabaseService {
@@ -9,7 +11,8 @@ service DatabaseService {
   rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse);
   rpc GetUser(GetUserRequest) returns (User);
   rpc UpdateUser(UpdateUserRequest) returns (User);
-  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+  rpc UpdatePassword(UpdatePasswordRequest) returns (google.protobuf.Empty);
+  rpc DeleteUser(DeleteUserRequest) returns (google.protobuf.Empty);
 }
 
 message User {
@@ -38,12 +41,14 @@ message GetUserRequest {
 
 message UpdateUserRequest {
   int64 id = 1;
-  optional string name = 2;
-  optional string password = 3;
+  string name = 2;
+}
+
+message UpdatePasswordRequest {
+  int64 id = 1;
+  string password = 2;
 }
 
 message DeleteUserRequest {
   int64 id = 1;
 }
-
-message DeleteUserResponse {}

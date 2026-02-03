@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,11 +20,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DatabaseService_CreateUser_FullMethodName  = "/db_service.DatabaseService/CreateUser"
-	DatabaseService_GetAllUsers_FullMethodName = "/db_service.DatabaseService/GetAllUsers"
-	DatabaseService_GetUser_FullMethodName     = "/db_service.DatabaseService/GetUser"
-	DatabaseService_UpdateUser_FullMethodName  = "/db_service.DatabaseService/UpdateUser"
-	DatabaseService_DeleteUser_FullMethodName  = "/db_service.DatabaseService/DeleteUser"
+	DatabaseService_CreateUser_FullMethodName     = "/db_service.DatabaseService/CreateUser"
+	DatabaseService_GetAllUsers_FullMethodName    = "/db_service.DatabaseService/GetAllUsers"
+	DatabaseService_GetUser_FullMethodName        = "/db_service.DatabaseService/GetUser"
+	DatabaseService_UpdateUser_FullMethodName     = "/db_service.DatabaseService/UpdateUser"
+	DatabaseService_UpdatePassword_FullMethodName = "/db_service.DatabaseService/UpdatePassword"
+	DatabaseService_DeleteUser_FullMethodName     = "/db_service.DatabaseService/DeleteUser"
 )
 
 // DatabaseServiceClient is the client API for DatabaseService service.
@@ -34,7 +36,8 @@ type DatabaseServiceClient interface {
 	GetAllUsers(ctx context.Context, in *GetAllUsersRequest, opts ...grpc.CallOption) (*GetAllUsersResponse, error)
 	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*User, error)
 	UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*User, error)
-	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
+	UpdatePassword(ctx context.Context, in *UpdatePasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type databaseServiceClient struct {
@@ -85,9 +88,19 @@ func (c *databaseServiceClient) UpdateUser(ctx context.Context, in *UpdateUserRe
 	return out, nil
 }
 
-func (c *databaseServiceClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error) {
+func (c *databaseServiceClient) UpdatePassword(ctx context.Context, in *UpdatePasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteUserResponse)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, DatabaseService_UpdatePassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *databaseServiceClient) DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, DatabaseService_DeleteUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -103,7 +116,8 @@ type DatabaseServiceServer interface {
 	GetAllUsers(context.Context, *GetAllUsersRequest) (*GetAllUsersResponse, error)
 	GetUser(context.Context, *GetUserRequest) (*User, error)
 	UpdateUser(context.Context, *UpdateUserRequest) (*User, error)
-	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
+	UpdatePassword(context.Context, *UpdatePasswordRequest) (*emptypb.Empty, error)
+	DeleteUser(context.Context, *DeleteUserRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedDatabaseServiceServer()
 }
 
@@ -126,7 +140,10 @@ func (UnimplementedDatabaseServiceServer) GetUser(context.Context, *GetUserReque
 func (UnimplementedDatabaseServiceServer) UpdateUser(context.Context, *UpdateUserRequest) (*User, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateUser not implemented")
 }
-func (UnimplementedDatabaseServiceServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
+func (UnimplementedDatabaseServiceServer) UpdatePassword(context.Context, *UpdatePasswordRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdatePassword not implemented")
+}
+func (UnimplementedDatabaseServiceServer) DeleteUser(context.Context, *DeleteUserRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteUser not implemented")
 }
 func (UnimplementedDatabaseServiceServer) mustEmbedUnimplementedDatabaseServiceServer() {}
@@ -222,6 +239,24 @@ func _DatabaseService_UpdateUser_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DatabaseService_UpdatePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServiceServer).UpdatePassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DatabaseService_UpdatePassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServiceServer).UpdatePassword(ctx, req.(*UpdatePasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DatabaseService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteUserRequest)
 	if err := dec(in); err != nil {
@@ -262,6 +297,10 @@ var DatabaseService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateUser",
 			Handler:    _DatabaseService_UpdateUser_Handler,
+		},
+		{
+			MethodName: "UpdatePassword",
+			Handler:    _DatabaseService_UpdatePassword_Handler,
 		},
 		{
 			MethodName: "DeleteUser",

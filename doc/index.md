@@ -6,10 +6,10 @@
 - [proto/user.proto](#proto_user-proto)
     - [CreateUserRequest](#db_service-CreateUserRequest)
     - [DeleteUserRequest](#db_service-DeleteUserRequest)
-    - [DeleteUserResponse](#db_service-DeleteUserResponse)
     - [GetAllUsersRequest](#db_service-GetAllUsersRequest)
     - [GetAllUsersResponse](#db_service-GetAllUsersResponse)
     - [GetUserRequest](#db_service-GetUserRequest)
+    - [UpdatePasswordRequest](#db_service-UpdatePasswordRequest)
     - [UpdateUserRequest](#db_service-UpdateUserRequest)
     - [User](#db_service-User)
   
@@ -51,16 +51,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="db_service-DeleteUserResponse"></a>
-
-### DeleteUserResponse
-
 
 
 
@@ -114,6 +104,22 @@
 
 
 
+<a name="db_service-UpdatePasswordRequest"></a>
+
+### UpdatePasswordRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+| password | [string](#string) |  |  |
+
+
+
+
+
+
 <a name="db_service-UpdateUserRequest"></a>
 
 ### UpdateUserRequest
@@ -123,8 +129,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
-| name | [string](#string) | optional |  |
-| password | [string](#string) | optional |  |
+| name | [string](#string) |  |  |
 
 
 
@@ -164,7 +169,8 @@
 | GetAllUsers | [GetAllUsersRequest](#db_service-GetAllUsersRequest) | [GetAllUsersResponse](#db_service-GetAllUsersResponse) |  |
 | GetUser | [GetUserRequest](#db_service-GetUserRequest) | [User](#db_service-User) |  |
 | UpdateUser | [UpdateUserRequest](#db_service-UpdateUserRequest) | [User](#db_service-User) |  |
-| DeleteUser | [DeleteUserRequest](#db_service-DeleteUserRequest) | [DeleteUserResponse](#db_service-DeleteUserResponse) |  |
+| UpdatePassword | [UpdatePasswordRequest](#db_service-UpdatePasswordRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
+| DeleteUser | [DeleteUserRequest](#db_service-DeleteUserRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
 
  
 

@@ -187,10 +187,6 @@
                 </li>
               
                 <li>
-                  <a href="#db_service.DeleteUserResponse"><span class="badge">M</span>DeleteUserResponse</a>
-                </li>
-              
-                <li>
                   <a href="#db_service.GetAllUsersRequest"><span class="badge">M</span>GetAllUsersRequest</a>
                 </li>
               
@@ -200,6 +196,10 @@
               
                 <li>
                   <a href="#db_service.GetUserRequest"><span class="badge">M</span>GetUserRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#db_service.UpdatePasswordRequest"><span class="badge">M</span>UpdatePasswordRequest</a>
                 </li>
               
                 <li>
@@ -284,13 +284,6 @@
           </table>
 
           
-
-        
-      
-        <h3 id="db_service.DeleteUserResponse">DeleteUserResponse</h3>
-        <p></p>
-
-        
 
         
       
@@ -380,6 +373,37 @@
 
         
       
+        <h3 id="db_service.UpdatePasswordRequest">UpdatePasswordRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>password</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="db_service.UpdateUserRequest">UpdateUserRequest</h3>
         <p></p>
 
@@ -400,14 +424,7 @@
                 <tr>
                   <td>name</td>
                   <td><a href="#string">string</a></td>
-                  <td>optional</td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>password</td>
-                  <td><a href="#string">string</a></td>
-                  <td>optional</td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -492,9 +509,16 @@
               </tr>
             
               <tr>
+                <td>UpdatePassword</td>
+                <td><a href="#db_service.UpdatePasswordRequest">UpdatePasswordRequest</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
                 <td>DeleteUser</td>
                 <td><a href="#db_service.DeleteUserRequest">DeleteUserRequest</a></td>
-                <td><a href="#db_service.DeleteUserResponse">DeleteUserResponse</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
                 <td><p></p></td>
               </tr>
             
