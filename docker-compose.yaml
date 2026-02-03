@@ -5,7 +5,7 @@ services:
       dockerfile: gen.proto.Dockerfile
     volumes:
       - .:/workspace
-    entrypoint: []
+    entrypoint: [ ]
     command: >
       /bin/sh -c "find proto -name '*.proto' -print0 
       | xargs -0 protoc -I=. 
@@ -14,3 +14,16 @@ services:
       --go_opt=module=github.com/XenonPPG/KRS_CONTRACTS 
       --go-grpc_out=. 
       --go-grpc_opt=module=github.com/XenonPPG/KRS_CONTRACTS"
+
+  protodoc:
+    build:
+      context: .
+      dockerfile: gen.doc.Dockerfile
+    volumes:
+      - .:/workspace
+    entrypoint: [ ]
+    command: >
+      /bin/sh -c "mkdir -p doc && 
+      protoc -I. --doc_out=./doc --doc_opt=markdown,index.md proto/*.proto && 
+      protoc -I. --doc_out=./doc --doc_opt=html,index.html proto/*.proto &&
+      protoc -I. --doc_out=./ --doc_opt=markdown,README.md proto/*.proto"
