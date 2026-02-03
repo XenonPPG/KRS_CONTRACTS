@@ -113,7 +113,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
-| password | [string](#string) |  |  |
+| oldPassword | [string](#string) |  |  |
+| newPassword | [string](#string) |  |  |
 
 
 

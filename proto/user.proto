@@ -46,7 +46,8 @@ message UpdateUserRequest {
 
 message UpdatePasswordRequest {
   int64 id = 1;
-  string password = 2;
+  string oldPassword = 2;
+  string newPassword = 3;
 }
 
 message DeleteUserRequest {
