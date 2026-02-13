@@ -3,6 +3,17 @@
 
 ## Table of Contents
 
+- [proto/note.proto](#proto_note-proto)
+    - [CreateNoteRequest](#db_service-CreateNoteRequest)
+    - [DeleteNoteRequest](#db_service-DeleteNoteRequest)
+    - [GetAllNotesRequest](#db_service-GetAllNotesRequest)
+    - [GetAllNotesResponse](#db_service-GetAllNotesResponse)
+    - [GetNoteRequest](#db_service-GetNoteRequest)
+    - [NoteResponse](#db_service-NoteResponse)
+    - [UpdateNoteRequest](#db_service-UpdateNoteRequest)
+  
+    - [NotesService](#db_service-NotesService)
+  
 - [proto/user.proto](#proto_user-proto)
     - [CreateUserRequest](#db_service-CreateUserRequest)
     - [DeleteUserRequest](#db_service-DeleteUserRequest)
@@ -15,9 +26,151 @@
     - [User](#db_service-User)
     - [VerifyPasswordRequest](#db_service-VerifyPasswordRequest)
   
-    - [DatabaseService](#db_service-DatabaseService)
+    - [UserService](#db_service-UserService)
   
 - [Scalar Value Types](#scalar-value-types)
+
+
+
+<a name="proto_note-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## proto/note.proto
+
+
+
+<a name="db_service-CreateNoteRequest"></a>
+
+### CreateNoteRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| userID | [int64](#int64) |  |  |
+| title | [string](#string) |  |  |
+| content | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="db_service-DeleteNoteRequest"></a>
+
+### DeleteNoteRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="db_service-GetAllNotesRequest"></a>
+
+### GetAllNotesRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| userID | [int64](#int64) |  |  |
+| limit | [int32](#int32) |  |  |
+| offset | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="db_service-GetAllNotesResponse"></a>
+
+### GetAllNotesResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| notes | [NoteResponse](#db_service-NoteResponse) | repeated |  |
+| total_count | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="db_service-GetNoteRequest"></a>
+
+### GetNoteRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="db_service-NoteResponse"></a>
+
+### NoteResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="db_service-UpdateNoteRequest"></a>
+
+### UpdateNoteRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int64](#int64) |  |  |
+| new_label | [string](#string) | optional |  |
+| new_content | [string](#string) | optional |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="db_service-NotesService"></a>
+
+### NotesService
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| CreateNote | [CreateNoteRequest](#db_service-CreateNoteRequest) | [NoteResponse](#db_service-NoteResponse) |  |
+| GetNote | [GetNoteRequest](#db_service-GetNoteRequest) | [NoteResponse](#db_service-NoteResponse) |  |
+| GetAllNotes | [GetAllNotesRequest](#db_service-GetAllNotesRequest) | [GetAllNotesResponse](#db_service-GetAllNotesResponse) |  |
+| UpdateNote | [UpdateNoteRequest](#db_service-UpdateNoteRequest) | [NoteResponse](#db_service-NoteResponse) |  |
+| DeleteNote | [DeleteNoteRequest](#db_service-DeleteNoteRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
+
+ 
 
 
 
@@ -192,9 +345,9 @@
  
 
 
-<a name="db_service-DatabaseService"></a>
+<a name="db_service-UserService"></a>
 
-### DatabaseService
+### UserService
 
 
 | Method Name | Request Type | Response Type | Description |

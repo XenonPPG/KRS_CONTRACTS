@@ -4,9 +4,9 @@ package db_service;
 
 import "google/protobuf/empty.proto";
 
-option go_package = "github.com/XenonPPG/KRS_CONTRACTS/gen/db_v1;db_v1";
+option go_package = "github.com/XenonPPG/KRS_CONTRACTS/gen/user_v1;user_v1";
 
-service DatabaseService {
+service UserService {
   rpc CreateUser(CreateUserRequest) returns (User);
   rpc GetAllUsers(GetAllUsersRequest) returns (GetAllUsersResponse);
   rpc GetUser(GetUserRequest) returns (User);

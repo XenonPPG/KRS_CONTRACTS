@@ -175,6 +175,49 @@
         
           
           <li>
+            <a href="#proto%2fnote.proto">proto/note.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#db_service.CreateNoteRequest"><span class="badge">M</span>CreateNoteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#db_service.DeleteNoteRequest"><span class="badge">M</span>DeleteNoteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#db_service.GetAllNotesRequest"><span class="badge">M</span>GetAllNotesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#db_service.GetAllNotesResponse"><span class="badge">M</span>GetAllNotesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#db_service.GetNoteRequest"><span class="badge">M</span>GetNoteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#db_service.NoteResponse"><span class="badge">M</span>NoteResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#db_service.UpdateNoteRequest"><span class="badge">M</span>UpdateNoteRequest</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#db_service.NotesService"><span class="badge">S</span>NotesService</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#proto%2fuser.proto">proto/user.proto</a>
             <ul>
               
@@ -222,7 +265,7 @@
               
               
                 <li>
-                  <a href="#db_service.DatabaseService"><span class="badge">S</span>DatabaseService</a>
+                  <a href="#db_service.UserService"><span class="badge">S</span>UserService</a>
                 </li>
               
             </ul>
@@ -232,6 +275,284 @@
       </ul>
     </div>
 
+    
+      
+      <div class="file-heading">
+        <h2 id="proto/note.proto">proto/note.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id="db_service.CreateNoteRequest">CreateNoteRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>userID</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>title</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>content</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="db_service.DeleteNoteRequest">DeleteNoteRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="db_service.GetAllNotesRequest">GetAllNotesRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>userID</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>limit</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>offset</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="db_service.GetAllNotesResponse">GetAllNotesResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>notes</td>
+                  <td><a href="#db_service.NoteResponse">NoteResponse</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>total_count</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="db_service.GetNoteRequest">GetNoteRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="db_service.NoteResponse">NoteResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="db_service.UpdateNoteRequest">UpdateNoteRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>new_label</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>new_content</td>
+                  <td><a href="#string">string</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id="db_service.NotesService">NotesService</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>CreateNote</td>
+                <td><a href="#db_service.CreateNoteRequest">CreateNoteRequest</a></td>
+                <td><a href="#db_service.NoteResponse">NoteResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetNote</td>
+                <td><a href="#db_service.GetNoteRequest">GetNoteRequest</a></td>
+                <td><a href="#db_service.NoteResponse">NoteResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GetAllNotes</td>
+                <td><a href="#db_service.GetAllNotesRequest">GetAllNotesRequest</a></td>
+                <td><a href="#db_service.GetAllNotesResponse">GetAllNotesResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateNote</td>
+                <td><a href="#db_service.UpdateNoteRequest">UpdateNoteRequest</a></td>
+                <td><a href="#db_service.NoteResponse">NoteResponse</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DeleteNote</td>
+                <td><a href="#db_service.DeleteNoteRequest">DeleteNoteRequest</a></td>
+                <td><a href="#google.protobuf.Empty">.google.protobuf.Empty</a></td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
     
       
       <div class="file-heading">
@@ -542,7 +863,7 @@
       
 
       
-        <h3 id="db_service.DatabaseService">DatabaseService</h3>
+        <h3 id="db_service.UserService">UserService</h3>
         <p></p>
         <table class="enum-table">
           <thead>

@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package db_service;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/XenonPPG/KRS_CONTRACTS/gen/notes_v1;notes_v1";
+
+service NotesService {
+  rpc CreateNote(CreateNoteRequest) returns (NoteResponse);
+  rpc GetNote(GetNoteRequest) returns (NoteResponse);
+  rpc GetAllNotes(GetAllNotesRequest) returns (GetAllNotesResponse);
+  rpc UpdateNote(UpdateNoteRequest) returns (NoteResponse);
+  rpc DeleteNote(DeleteNoteRequest) returns (google.protobuf.Empty);
+}
+
+message CreateNoteRequest {
+  int64 userID = 1;
+  string title = 2;
+  string content = 3;
+}
+
+message NoteResponse {
+  int64 id = 1;
+}
+
+message GetNoteRequest {
+  int64 id = 1;
+}
+
+message GetAllNotesRequest {
+  int64 userID = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
+
+message GetAllNotesResponse {
+  repeated NoteResponse notes = 1;
+  int32 total_count = 2;
+}
+
+message UpdateNoteRequest {
+  int64 id = 1;
+  optional string new_label = 2;
+  optional string new_content = 3;
+}
+
+message DeleteNoteRequest {
+  int64 id = 1;
+}
