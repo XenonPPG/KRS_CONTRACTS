@@ -4,9 +4,9 @@ package db_service;
 
 import "google/protobuf/empty.proto";
 
-option go_package = "github.com/XenonPPG/KRS_CONTRACTS/gen/notes_v1;notes_v1";
+option go_package = "github.com/XenonPPG/KRS_CONTRACTS/gen/note_v1;note_v1";
 
-service NotesService {
+service NoteService {
   rpc CreateNote(CreateNoteRequest) returns (NoteResponse);
   rpc GetNote(GetNoteRequest) returns (NoteResponse);
   rpc GetAllNotes(GetAllNotesRequest) returns (GetAllNotesResponse);

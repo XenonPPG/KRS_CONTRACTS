@@ -12,7 +12,7 @@
     - [NoteResponse](#db_service-NoteResponse)
     - [UpdateNoteRequest](#db_service-UpdateNoteRequest)
   
-    - [NotesService](#db_service-NotesService)
+    - [NoteService](#db_service-NoteService)
   
 - [proto/user.proto](#proto_user-proto)
     - [CreateUserRequest](#db_service-CreateUserRequest)
@@ -157,9 +157,9 @@
  
 
 
-<a name="db_service-NotesService"></a>
+<a name="db_service-NoteService"></a>
 
-### NotesService
+### NoteService
 
 
 | Method Name | Request Type | Response Type | Description |

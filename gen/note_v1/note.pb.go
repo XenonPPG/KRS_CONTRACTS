@@ -4,7 +4,7 @@
 // 	protoc        v6.31.1
 // source: proto/note.proto
 
-package notes_v1
+package note_v1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -417,8 +417,8 @@ const file_proto_note_proto_rawDesc = "" +
 	"_new_labelB\x0e\n" +
 	"\f_new_content\"#\n" +
 	"\x11DeleteNoteRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id2\xf2\x02\n" +
-	"\fNotesService\x12E\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id2\xf1\x02\n" +
+	"\vNoteService\x12E\n" +
 	"\n" +
 	"CreateNote\x12\x1d.db_service.CreateNoteRequest\x1a\x18.db_service.NoteResponse\x12?\n" +
 	"\aGetNote\x12\x1a.db_service.GetNoteRequest\x1a\x18.db_service.NoteResponse\x12N\n" +
@@ -426,7 +426,7 @@ const file_proto_note_proto_rawDesc = "" +
 	"\n" +
 	"UpdateNote\x12\x1d.db_service.UpdateNoteRequest\x1a\x18.db_service.NoteResponse\x12C\n" +
 	"\n" +
-	"DeleteNote\x12\x1d.db_service.DeleteNoteRequest\x1a\x16.google.protobuf.EmptyB9Z7github.com/XenonPPG/KRS_CONTRACTS/gen/notes_v1;notes_v1b\x06proto3"
+	"DeleteNote\x12\x1d.db_service.DeleteNoteRequest\x1a\x16.google.protobuf.EmptyB7Z5github.com/XenonPPG/KRS_CONTRACTS/gen/note_v1;note_v1b\x06proto3"
 
 var (
 	file_proto_note_proto_rawDescOnce sync.Once
@@ -453,16 +453,16 @@ var file_proto_note_proto_goTypes = []any{
 }
 var file_proto_note_proto_depIdxs = []int32{
 	1, // 0: db_service.GetAllNotesResponse.notes:type_name -> db_service.NoteResponse
-	0, // 1: db_service.NotesService.CreateNote:input_type -> db_service.CreateNoteRequest
-	2, // 2: db_service.NotesService.GetNote:input_type -> db_service.GetNoteRequest
-	3, // 3: db_service.NotesService.GetAllNotes:input_type -> db_service.GetAllNotesRequest
-	5, // 4: db_service.NotesService.UpdateNote:input_type -> db_service.UpdateNoteRequest
-	6, // 5: db_service.NotesService.DeleteNote:input_type -> db_service.DeleteNoteRequest
-	1, // 6: db_service.NotesService.CreateNote:output_type -> db_service.NoteResponse
-	1, // 7: db_service.NotesService.GetNote:output_type -> db_service.NoteResponse
-	4, // 8: db_service.NotesService.GetAllNotes:output_type -> db_service.GetAllNotesResponse
-	1, // 9: db_service.NotesService.UpdateNote:output_type -> db_service.NoteResponse
-	7, // 10: db_service.NotesService.DeleteNote:output_type -> google.protobuf.Empty
+	0, // 1: db_service.NoteService.CreateNote:input_type -> db_service.CreateNoteRequest
+	2, // 2: db_service.NoteService.GetNote:input_type -> db_service.GetNoteRequest
+	3, // 3: db_service.NoteService.GetAllNotes:input_type -> db_service.GetAllNotesRequest
+	5, // 4: db_service.NoteService.UpdateNote:input_type -> db_service.UpdateNoteRequest
+	6, // 5: db_service.NoteService.DeleteNote:input_type -> db_service.DeleteNoteRequest
+	1, // 6: db_service.NoteService.CreateNote:output_type -> db_service.NoteResponse
+	1, // 7: db_service.NoteService.GetNote:output_type -> db_service.NoteResponse
+	4, // 8: db_service.NoteService.GetAllNotes:output_type -> db_service.GetAllNotesResponse
+	1, // 9: db_service.NoteService.UpdateNote:output_type -> db_service.NoteResponse
+	7, // 10: db_service.NoteService.DeleteNote:output_type -> google.protobuf.Empty
 	6, // [6:11] is the sub-list for method output_type
 	1, // [1:6] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
