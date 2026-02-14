@@ -7,10 +7,10 @@ import "google/protobuf/empty.proto";
 option go_package = "github.com/XenonPPG/KRS_CONTRACTS/gen/note_v1;note_v1";
 
 service NoteService {
-  rpc CreateNote(CreateNoteRequest) returns (NoteResponse);
-  rpc GetNote(GetNoteRequest) returns (NoteResponse);
+  rpc CreateNote(CreateNoteRequest) returns (Note);
+  rpc GetNote(GetNoteRequest) returns (Note);
   rpc GetAllNotes(GetAllNotesRequest) returns (GetAllNotesResponse);
-  rpc UpdateNote(UpdateNoteRequest) returns (NoteResponse);
+  rpc UpdateNote(UpdateNoteRequest) returns (Note);
   rpc DeleteNote(DeleteNoteRequest) returns (google.protobuf.Empty);
 }
 
@@ -20,8 +20,10 @@ message CreateNoteRequest {
   string content = 3;
 }
 
-message NoteResponse {
+message Note {
   int64 id = 1;
+  string title = 2;
+  string content = 3;
 }
 
 message GetNoteRequest {
@@ -35,7 +37,7 @@ message GetAllNotesRequest {
 }
 
 message GetAllNotesResponse {
-  repeated NoteResponse notes = 1;
+  repeated Note notes = 1;
   int32 total_count = 2;
 }
 

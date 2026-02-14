@@ -31,10 +31,10 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NoteServiceClient interface {
-	CreateNote(ctx context.Context, in *CreateNoteRequest, opts ...grpc.CallOption) (*NoteResponse, error)
-	GetNote(ctx context.Context, in *GetNoteRequest, opts ...grpc.CallOption) (*NoteResponse, error)
+	CreateNote(ctx context.Context, in *CreateNoteRequest, opts ...grpc.CallOption) (*Note, error)
+	GetNote(ctx context.Context, in *GetNoteRequest, opts ...grpc.CallOption) (*Note, error)
 	GetAllNotes(ctx context.Context, in *GetAllNotesRequest, opts ...grpc.CallOption) (*GetAllNotesResponse, error)
-	UpdateNote(ctx context.Context, in *UpdateNoteRequest, opts ...grpc.CallOption) (*NoteResponse, error)
+	UpdateNote(ctx context.Context, in *UpdateNoteRequest, opts ...grpc.CallOption) (*Note, error)
 	DeleteNote(ctx context.Context, in *DeleteNoteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -46,9 +46,9 @@ func NewNoteServiceClient(cc grpc.ClientConnInterface) NoteServiceClient {
 	return &noteServiceClient{cc}
 }
 
-func (c *noteServiceClient) CreateNote(ctx context.Context, in *CreateNoteRequest, opts ...grpc.CallOption) (*NoteResponse, error) {
+func (c *noteServiceClient) CreateNote(ctx context.Context, in *CreateNoteRequest, opts ...grpc.CallOption) (*Note, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(NoteResponse)
+	out := new(Note)
 	err := c.cc.Invoke(ctx, NoteService_CreateNote_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -56,9 +56,9 @@ func (c *noteServiceClient) CreateNote(ctx context.Context, in *CreateNoteReques
 	return out, nil
 }
 
-func (c *noteServiceClient) GetNote(ctx context.Context, in *GetNoteRequest, opts ...grpc.CallOption) (*NoteResponse, error) {
+func (c *noteServiceClient) GetNote(ctx context.Context, in *GetNoteRequest, opts ...grpc.CallOption) (*Note, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(NoteResponse)
+	out := new(Note)
 	err := c.cc.Invoke(ctx, NoteService_GetNote_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -76,9 +76,9 @@ func (c *noteServiceClient) GetAllNotes(ctx context.Context, in *GetAllNotesRequ
 	return out, nil
 }
 
-func (c *noteServiceClient) UpdateNote(ctx context.Context, in *UpdateNoteRequest, opts ...grpc.CallOption) (*NoteResponse, error) {
+func (c *noteServiceClient) UpdateNote(ctx context.Context, in *UpdateNoteRequest, opts ...grpc.CallOption) (*Note, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(NoteResponse)
+	out := new(Note)
 	err := c.cc.Invoke(ctx, NoteService_UpdateNote_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -100,10 +100,10 @@ func (c *noteServiceClient) DeleteNote(ctx context.Context, in *DeleteNoteReques
 // All implementations must embed UnimplementedNoteServiceServer
 // for forward compatibility.
 type NoteServiceServer interface {
-	CreateNote(context.Context, *CreateNoteRequest) (*NoteResponse, error)
-	GetNote(context.Context, *GetNoteRequest) (*NoteResponse, error)
+	CreateNote(context.Context, *CreateNoteRequest) (*Note, error)
+	GetNote(context.Context, *GetNoteRequest) (*Note, error)
 	GetAllNotes(context.Context, *GetAllNotesRequest) (*GetAllNotesResponse, error)
-	UpdateNote(context.Context, *UpdateNoteRequest) (*NoteResponse, error)
+	UpdateNote(context.Context, *UpdateNoteRequest) (*Note, error)
 	DeleteNote(context.Context, *DeleteNoteRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedNoteServiceServer()
 }
@@ -115,16 +115,16 @@ type NoteServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedNoteServiceServer struct{}
 
-func (UnimplementedNoteServiceServer) CreateNote(context.Context, *CreateNoteRequest) (*NoteResponse, error) {
+func (UnimplementedNoteServiceServer) CreateNote(context.Context, *CreateNoteRequest) (*Note, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateNote not implemented")
 }
-func (UnimplementedNoteServiceServer) GetNote(context.Context, *GetNoteRequest) (*NoteResponse, error) {
+func (UnimplementedNoteServiceServer) GetNote(context.Context, *GetNoteRequest) (*Note, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetNote not implemented")
 }
 func (UnimplementedNoteServiceServer) GetAllNotes(context.Context, *GetAllNotesRequest) (*GetAllNotesResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetAllNotes not implemented")
 }
-func (UnimplementedNoteServiceServer) UpdateNote(context.Context, *UpdateNoteRequest) (*NoteResponse, error) {
+func (UnimplementedNoteServiceServer) UpdateNote(context.Context, *UpdateNoteRequest) (*Note, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateNote not implemented")
 }
 func (UnimplementedNoteServiceServer) DeleteNote(context.Context, *DeleteNoteRequest) (*emptypb.Empty, error) {

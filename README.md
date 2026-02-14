@@ -9,7 +9,7 @@
     - [GetAllNotesRequest](#db_service-GetAllNotesRequest)
     - [GetAllNotesResponse](#db_service-GetAllNotesResponse)
     - [GetNoteRequest](#db_service-GetNoteRequest)
-    - [NoteResponse](#db_service-NoteResponse)
+    - [Note](#db_service-Note)
     - [UpdateNoteRequest](#db_service-UpdateNoteRequest)
   
     - [NoteService](#db_service-NoteService)
@@ -96,7 +96,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| notes | [NoteResponse](#db_service-NoteResponse) | repeated |  |
+| notes | [Note](#db_service-Note) | repeated |  |
 | total_count | [int32](#int32) |  |  |
 
 
@@ -119,15 +119,17 @@
 
 
 
-<a name="db_service-NoteResponse"></a>
+<a name="db_service-Note"></a>
 
-### NoteResponse
+### Note
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
+| title | [string](#string) |  |  |
+| content | [string](#string) |  |  |
 
 
 
@@ -164,10 +166,10 @@
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateNote | [CreateNoteRequest](#db_service-CreateNoteRequest) | [NoteResponse](#db_service-NoteResponse) |  |
-| GetNote | [GetNoteRequest](#db_service-GetNoteRequest) | [NoteResponse](#db_service-NoteResponse) |  |
+| CreateNote | [CreateNoteRequest](#db_service-CreateNoteRequest) | [Note](#db_service-Note) |  |
+| GetNote | [GetNoteRequest](#db_service-GetNoteRequest) | [Note](#db_service-Note) |  |
 | GetAllNotes | [GetAllNotesRequest](#db_service-GetAllNotesRequest) | [GetAllNotesResponse](#db_service-GetAllNotesResponse) |  |
-| UpdateNote | [UpdateNoteRequest](#db_service-UpdateNoteRequest) | [NoteResponse](#db_service-NoteResponse) |  |
+| UpdateNote | [UpdateNoteRequest](#db_service-UpdateNoteRequest) | [Note](#db_service-Note) |  |
 | DeleteNote | [DeleteNoteRequest](#db_service-DeleteNoteRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
 
  

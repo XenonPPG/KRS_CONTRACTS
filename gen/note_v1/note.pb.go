@@ -82,27 +82,29 @@ func (x *CreateNoteRequest) GetContent() string {
 	return ""
 }
 
-type NoteResponse struct {
+type Note struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Content       string                 `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *NoteResponse) Reset() {
-	*x = NoteResponse{}
+func (x *Note) Reset() {
+	*x = Note{}
 	mi := &file_proto_note_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *NoteResponse) String() string {
+func (x *Note) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*NoteResponse) ProtoMessage() {}
+func (*Note) ProtoMessage() {}
 
-func (x *NoteResponse) ProtoReflect() protoreflect.Message {
+func (x *Note) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_note_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -114,16 +116,30 @@ func (x *NoteResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use NoteResponse.ProtoReflect.Descriptor instead.
-func (*NoteResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use Note.ProtoReflect.Descriptor instead.
+func (*Note) Descriptor() ([]byte, []int) {
 	return file_proto_note_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *NoteResponse) GetId() int64 {
+func (x *Note) GetId() int64 {
 	if x != nil {
 		return x.Id
 	}
 	return 0
+}
+
+func (x *Note) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *Note) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
 }
 
 type GetNoteRequest struct {
@@ -232,7 +248,7 @@ func (x *GetAllNotesRequest) GetOffset() int32 {
 
 type GetAllNotesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Notes         []*NoteResponse        `protobuf:"bytes,1,rep,name=notes,proto3" json:"notes,omitempty"`
+	Notes         []*Note                `protobuf:"bytes,1,rep,name=notes,proto3" json:"notes,omitempty"`
 	TotalCount    int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -268,7 +284,7 @@ func (*GetAllNotesResponse) Descriptor() ([]byte, []int) {
 	return file_proto_note_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetAllNotesResponse) GetNotes() []*NoteResponse {
+func (x *GetAllNotesResponse) GetNotes() []*Note {
 	if x != nil {
 		return x.Notes
 	}
@@ -395,17 +411,19 @@ const file_proto_note_proto_rawDesc = "" +
 	"\x11CreateNoteRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\x03R\x06userID\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
-	"\acontent\x18\x03 \x01(\tR\acontent\"\x1e\n" +
-	"\fNoteResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\" \n" +
+	"\acontent\x18\x03 \x01(\tR\acontent\"F\n" +
+	"\x04Note\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
+	"\acontent\x18\x03 \x01(\tR\acontent\" \n" +
 	"\x0eGetNoteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"Z\n" +
 	"\x12GetAllNotesRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\x03R\x06userID\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"f\n" +
-	"\x13GetAllNotesResponse\x12.\n" +
-	"\x05notes\x18\x01 \x03(\v2\x18.db_service.NoteResponseR\x05notes\x12\x1f\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"^\n" +
+	"\x13GetAllNotesResponse\x12&\n" +
+	"\x05notes\x18\x01 \x03(\v2\x10.db_service.NoteR\x05notes\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\"\x89\x01\n" +
 	"\x11UpdateNoteRequest\x12\x0e\n" +
@@ -417,14 +435,14 @@ const file_proto_note_proto_rawDesc = "" +
 	"_new_labelB\x0e\n" +
 	"\f_new_content\"#\n" +
 	"\x11DeleteNoteRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id2\xf1\x02\n" +
-	"\vNoteService\x12E\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id2\xd9\x02\n" +
+	"\vNoteService\x12=\n" +
 	"\n" +
-	"CreateNote\x12\x1d.db_service.CreateNoteRequest\x1a\x18.db_service.NoteResponse\x12?\n" +
-	"\aGetNote\x12\x1a.db_service.GetNoteRequest\x1a\x18.db_service.NoteResponse\x12N\n" +
-	"\vGetAllNotes\x12\x1e.db_service.GetAllNotesRequest\x1a\x1f.db_service.GetAllNotesResponse\x12E\n" +
+	"CreateNote\x12\x1d.db_service.CreateNoteRequest\x1a\x10.db_service.Note\x127\n" +
+	"\aGetNote\x12\x1a.db_service.GetNoteRequest\x1a\x10.db_service.Note\x12N\n" +
+	"\vGetAllNotes\x12\x1e.db_service.GetAllNotesRequest\x1a\x1f.db_service.GetAllNotesResponse\x12=\n" +
 	"\n" +
-	"UpdateNote\x12\x1d.db_service.UpdateNoteRequest\x1a\x18.db_service.NoteResponse\x12C\n" +
+	"UpdateNote\x12\x1d.db_service.UpdateNoteRequest\x1a\x10.db_service.Note\x12C\n" +
 	"\n" +
 	"DeleteNote\x12\x1d.db_service.DeleteNoteRequest\x1a\x16.google.protobuf.EmptyB7Z5github.com/XenonPPG/KRS_CONTRACTS/gen/note_v1;note_v1b\x06proto3"
 
@@ -443,7 +461,7 @@ func file_proto_note_proto_rawDescGZIP() []byte {
 var file_proto_note_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_proto_note_proto_goTypes = []any{
 	(*CreateNoteRequest)(nil),   // 0: db_service.CreateNoteRequest
-	(*NoteResponse)(nil),        // 1: db_service.NoteResponse
+	(*Note)(nil),                // 1: db_service.Note
 	(*GetNoteRequest)(nil),      // 2: db_service.GetNoteRequest
 	(*GetAllNotesRequest)(nil),  // 3: db_service.GetAllNotesRequest
 	(*GetAllNotesResponse)(nil), // 4: db_service.GetAllNotesResponse
@@ -452,16 +470,16 @@ var file_proto_note_proto_goTypes = []any{
 	(*emptypb.Empty)(nil),       // 7: google.protobuf.Empty
 }
 var file_proto_note_proto_depIdxs = []int32{
-	1, // 0: db_service.GetAllNotesResponse.notes:type_name -> db_service.NoteResponse
+	1, // 0: db_service.GetAllNotesResponse.notes:type_name -> db_service.Note
 	0, // 1: db_service.NoteService.CreateNote:input_type -> db_service.CreateNoteRequest
 	2, // 2: db_service.NoteService.GetNote:input_type -> db_service.GetNoteRequest
 	3, // 3: db_service.NoteService.GetAllNotes:input_type -> db_service.GetAllNotesRequest
 	5, // 4: db_service.NoteService.UpdateNote:input_type -> db_service.UpdateNoteRequest
 	6, // 5: db_service.NoteService.DeleteNote:input_type -> db_service.DeleteNoteRequest
-	1, // 6: db_service.NoteService.CreateNote:output_type -> db_service.NoteResponse
-	1, // 7: db_service.NoteService.GetNote:output_type -> db_service.NoteResponse
+	1, // 6: db_service.NoteService.CreateNote:output_type -> db_service.Note
+	1, // 7: db_service.NoteService.GetNote:output_type -> db_service.Note
 	4, // 8: db_service.NoteService.GetAllNotes:output_type -> db_service.GetAllNotesResponse
-	1, // 9: db_service.NoteService.UpdateNote:output_type -> db_service.NoteResponse
+	1, // 9: db_service.NoteService.UpdateNote:output_type -> db_service.Note
 	7, // 10: db_service.NoteService.DeleteNote:output_type -> google.protobuf.Empty
 	6, // [6:11] is the sub-list for method output_type
 	1, // [1:6] is the sub-list for method input_type
