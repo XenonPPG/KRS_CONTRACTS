@@ -301,7 +301,7 @@ func (x *GetAllNotesResponse) GetTotalCount() int32 {
 type UpdateNoteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	NewLabel      *string                `protobuf:"bytes,2,opt,name=new_label,json=newLabel,proto3,oneof" json:"new_label,omitempty"`
+	NewTitle      *string                `protobuf:"bytes,2,opt,name=new_title,json=newTitle,proto3,oneof" json:"new_title,omitempty"`
 	NewContent    *string                `protobuf:"bytes,3,opt,name=new_content,json=newContent,proto3,oneof" json:"new_content,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -344,9 +344,9 @@ func (x *UpdateNoteRequest) GetId() int64 {
 	return 0
 }
 
-func (x *UpdateNoteRequest) GetNewLabel() string {
-	if x != nil && x.NewLabel != nil {
-		return *x.NewLabel
+func (x *UpdateNoteRequest) GetNewTitle() string {
+	if x != nil && x.NewTitle != nil {
+		return *x.NewTitle
 	}
 	return ""
 }
@@ -428,11 +428,11 @@ const file_proto_note_proto_rawDesc = "" +
 	"totalCount\"\x89\x01\n" +
 	"\x11UpdateNoteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12 \n" +
-	"\tnew_label\x18\x02 \x01(\tH\x00R\bnewLabel\x88\x01\x01\x12$\n" +
+	"\tnew_title\x18\x02 \x01(\tH\x00R\bnewTitle\x88\x01\x01\x12$\n" +
 	"\vnew_content\x18\x03 \x01(\tH\x01R\n" +
 	"newContent\x88\x01\x01B\f\n" +
 	"\n" +
-	"_new_labelB\x0e\n" +
+	"_new_titleB\x0e\n" +
 	"\f_new_content\"#\n" +
 	"\x11DeleteNoteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id2\xd9\x02\n" +
