@@ -22,10 +22,60 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type ColorTheme int32
+
+const (
+	ColorTheme_AUTO  ColorTheme = 0
+	ColorTheme_LIGHT ColorTheme = 1
+	ColorTheme_DARK  ColorTheme = 2
+)
+
+// Enum value maps for ColorTheme.
+var (
+	ColorTheme_name = map[int32]string{
+		0: "AUTO",
+		1: "LIGHT",
+		2: "DARK",
+	}
+	ColorTheme_value = map[string]int32{
+		"AUTO":  0,
+		"LIGHT": 1,
+		"DARK":  2,
+	}
+)
+
+func (x ColorTheme) Enum() *ColorTheme {
+	p := new(ColorTheme)
+	*p = x
+	return p
+}
+
+func (x ColorTheme) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ColorTheme) Descriptor() protoreflect.EnumDescriptor {
+	return file_proto_user_proto_enumTypes[0].Descriptor()
+}
+
+func (ColorTheme) Type() protoreflect.EnumType {
+	return &file_proto_user_proto_enumTypes[0]
+}
+
+func (x ColorTheme) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ColorTheme.Descriptor instead.
+func (ColorTheme) EnumDescriptor() ([]byte, []int) {
+	return file_proto_user_proto_rawDescGZIP(), []int{0}
+}
+
 type User struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Login         string                 `protobuf:"bytes,2,opt,name=login,proto3" json:"login,omitempty"`
+	ColorTheme    ColorTheme             `protobuf:"varint,3,opt,name=colorTheme,proto3,enum=db_service.ColorTheme" json:"colorTheme,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -67,16 +117,23 @@ func (x *User) GetId() int64 {
 	return 0
 }
 
-func (x *User) GetName() string {
+func (x *User) GetLogin() string {
 	if x != nil {
-		return x.Name
+		return x.Login
 	}
 	return ""
 }
 
+func (x *User) GetColorTheme() ColorTheme {
+	if x != nil {
+		return x.ColorTheme
+	}
+	return ColorTheme_AUTO
+}
+
 type CreateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Login         string                 `protobuf:"bytes,1,opt,name=login,proto3" json:"login,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -112,9 +169,9 @@ func (*CreateUserRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateUserRequest) GetName() string {
+func (x *CreateUserRequest) GetLogin() string {
 	if x != nil {
-		return x.Name
+		return x.Login
 	}
 	return ""
 }
@@ -277,7 +334,8 @@ func (x *GetUserRequest) GetId() int64 {
 type UpdateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Login         *string                `protobuf:"bytes,2,opt,name=login,proto3,oneof" json:"login,omitempty"`
+	Theme         *ColorTheme            `protobuf:"varint,3,opt,name=theme,proto3,enum=db_service.ColorTheme,oneof" json:"theme,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -319,11 +377,18 @@ func (x *UpdateUserRequest) GetId() int64 {
 	return 0
 }
 
-func (x *UpdateUserRequest) GetName() string {
-	if x != nil {
-		return x.Name
+func (x *UpdateUserRequest) GetLogin() string {
+	if x != nil && x.Login != nil {
+		return *x.Login
 	}
 	return ""
+}
+
+func (x *UpdateUserRequest) GetTheme() ColorTheme {
+	if x != nil && x.Theme != nil {
+		return *x.Theme
+	}
+	return ColorTheme_AUTO
 }
 
 type UpdatePasswordRequest struct {
@@ -531,12 +596,15 @@ var File_proto_user_proto protoreflect.FileDescriptor
 const file_proto_user_proto_rawDesc = "" +
 	"\n" +
 	"\x10proto/user.proto\x12\n" +
-	"db_service\x1a\x1bgoogle/protobuf/empty.proto\"*\n" +
+	"db_service\x1a\x1bgoogle/protobuf/empty.proto\"d\n" +
 	"\x04User\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"C\n" +
-	"\x11CreateUserRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1a\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
+	"\x05login\x18\x02 \x01(\tR\x05login\x126\n" +
+	"\n" +
+	"colorTheme\x18\x03 \x01(\x0e2\x16.db_service.ColorThemeR\n" +
+	"colorTheme\"E\n" +
+	"\x11CreateUserRequest\x12\x14\n" +
+	"\x05login\x18\x01 \x01(\tR\x05login\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"B\n" +
 	"\x12GetAllUsersRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
@@ -546,10 +614,13 @@ const file_proto_user_proto_rawDesc = "" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\" \n" +
 	"\x0eGetUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"7\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"\x85\x01\n" +
 	"\x11UpdateUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"k\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x19\n" +
+	"\x05login\x18\x02 \x01(\tH\x00R\x05login\x88\x01\x01\x121\n" +
+	"\x05theme\x18\x03 \x01(\x0e2\x16.db_service.ColorThemeH\x01R\x05theme\x88\x01\x01B\b\n" +
+	"\x06_loginB\b\n" +
+	"\x06_theme\"k\n" +
 	"\x15UpdatePasswordRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12 \n" +
 	"\voldPassword\x18\x02 \x01(\tR\voldPassword\x12 \n" +
@@ -560,7 +631,12 @@ const file_proto_user_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"'\n" +
 	"\x0fIsValidResponse\x12\x14\n" +
-	"\x05valid\x18\x01 \x01(\bR\x05valid2\xf8\x03\n" +
+	"\x05valid\x18\x01 \x01(\bR\x05valid*+\n" +
+	"\n" +
+	"ColorTheme\x12\b\n" +
+	"\x04AUTO\x10\x00\x12\t\n" +
+	"\x05LIGHT\x10\x01\x12\b\n" +
+	"\x04DARK\x10\x022\xf8\x03\n" +
 	"\vUserService\x12=\n" +
 	"\n" +
 	"CreateUser\x12\x1d.db_service.CreateUserRequest\x1a\x10.db_service.User\x12N\n" +
@@ -585,41 +661,45 @@ func file_proto_user_proto_rawDescGZIP() []byte {
 	return file_proto_user_proto_rawDescData
 }
 
+var file_proto_user_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_proto_user_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_proto_user_proto_goTypes = []any{
-	(*User)(nil),                  // 0: db_service.User
-	(*CreateUserRequest)(nil),     // 1: db_service.CreateUserRequest
-	(*GetAllUsersRequest)(nil),    // 2: db_service.GetAllUsersRequest
-	(*GetAllUsersResponse)(nil),   // 3: db_service.GetAllUsersResponse
-	(*GetUserRequest)(nil),        // 4: db_service.GetUserRequest
-	(*UpdateUserRequest)(nil),     // 5: db_service.UpdateUserRequest
-	(*UpdatePasswordRequest)(nil), // 6: db_service.UpdatePasswordRequest
-	(*DeleteUserRequest)(nil),     // 7: db_service.DeleteUserRequest
-	(*VerifyPasswordRequest)(nil), // 8: db_service.VerifyPasswordRequest
-	(*IsValidResponse)(nil),       // 9: db_service.IsValidResponse
-	(*emptypb.Empty)(nil),         // 10: google.protobuf.Empty
+	(ColorTheme)(0),               // 0: db_service.ColorTheme
+	(*User)(nil),                  // 1: db_service.User
+	(*CreateUserRequest)(nil),     // 2: db_service.CreateUserRequest
+	(*GetAllUsersRequest)(nil),    // 3: db_service.GetAllUsersRequest
+	(*GetAllUsersResponse)(nil),   // 4: db_service.GetAllUsersResponse
+	(*GetUserRequest)(nil),        // 5: db_service.GetUserRequest
+	(*UpdateUserRequest)(nil),     // 6: db_service.UpdateUserRequest
+	(*UpdatePasswordRequest)(nil), // 7: db_service.UpdatePasswordRequest
+	(*DeleteUserRequest)(nil),     // 8: db_service.DeleteUserRequest
+	(*VerifyPasswordRequest)(nil), // 9: db_service.VerifyPasswordRequest
+	(*IsValidResponse)(nil),       // 10: db_service.IsValidResponse
+	(*emptypb.Empty)(nil),         // 11: google.protobuf.Empty
 }
 var file_proto_user_proto_depIdxs = []int32{
-	0,  // 0: db_service.GetAllUsersResponse.users:type_name -> db_service.User
-	1,  // 1: db_service.UserService.CreateUser:input_type -> db_service.CreateUserRequest
-	2,  // 2: db_service.UserService.GetAllUsers:input_type -> db_service.GetAllUsersRequest
-	4,  // 3: db_service.UserService.GetUser:input_type -> db_service.GetUserRequest
-	5,  // 4: db_service.UserService.UpdateUser:input_type -> db_service.UpdateUserRequest
-	6,  // 5: db_service.UserService.UpdatePassword:input_type -> db_service.UpdatePasswordRequest
-	7,  // 6: db_service.UserService.DeleteUser:input_type -> db_service.DeleteUserRequest
-	8,  // 7: db_service.UserService.VerifyPassword:input_type -> db_service.VerifyPasswordRequest
-	0,  // 8: db_service.UserService.CreateUser:output_type -> db_service.User
-	3,  // 9: db_service.UserService.GetAllUsers:output_type -> db_service.GetAllUsersResponse
-	0,  // 10: db_service.UserService.GetUser:output_type -> db_service.User
-	0,  // 11: db_service.UserService.UpdateUser:output_type -> db_service.User
-	10, // 12: db_service.UserService.UpdatePassword:output_type -> google.protobuf.Empty
-	10, // 13: db_service.UserService.DeleteUser:output_type -> google.protobuf.Empty
-	9,  // 14: db_service.UserService.VerifyPassword:output_type -> db_service.IsValidResponse
-	8,  // [8:15] is the sub-list for method output_type
-	1,  // [1:8] is the sub-list for method input_type
-	1,  // [1:1] is the sub-list for extension type_name
-	1,  // [1:1] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+	0,  // 0: db_service.User.colorTheme:type_name -> db_service.ColorTheme
+	1,  // 1: db_service.GetAllUsersResponse.users:type_name -> db_service.User
+	0,  // 2: db_service.UpdateUserRequest.theme:type_name -> db_service.ColorTheme
+	2,  // 3: db_service.UserService.CreateUser:input_type -> db_service.CreateUserRequest
+	3,  // 4: db_service.UserService.GetAllUsers:input_type -> db_service.GetAllUsersRequest
+	5,  // 5: db_service.UserService.GetUser:input_type -> db_service.GetUserRequest
+	6,  // 6: db_service.UserService.UpdateUser:input_type -> db_service.UpdateUserRequest
+	7,  // 7: db_service.UserService.UpdatePassword:input_type -> db_service.UpdatePasswordRequest
+	8,  // 8: db_service.UserService.DeleteUser:input_type -> db_service.DeleteUserRequest
+	9,  // 9: db_service.UserService.VerifyPassword:input_type -> db_service.VerifyPasswordRequest
+	1,  // 10: db_service.UserService.CreateUser:output_type -> db_service.User
+	4,  // 11: db_service.UserService.GetAllUsers:output_type -> db_service.GetAllUsersResponse
+	1,  // 12: db_service.UserService.GetUser:output_type -> db_service.User
+	1,  // 13: db_service.UserService.UpdateUser:output_type -> db_service.User
+	11, // 14: db_service.UserService.UpdatePassword:output_type -> google.protobuf.Empty
+	11, // 15: db_service.UserService.DeleteUser:output_type -> google.protobuf.Empty
+	10, // 16: db_service.UserService.VerifyPassword:output_type -> db_service.IsValidResponse
+	10, // [10:17] is the sub-list for method output_type
+	3,  // [3:10] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_proto_init() }
@@ -627,18 +707,20 @@ func file_proto_user_proto_init() {
 	if File_proto_user_proto != nil {
 		return
 	}
+	file_proto_user_proto_msgTypes[5].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_user_proto_rawDesc), len(file_proto_user_proto_rawDesc)),
-			NumEnums:      0,
+			NumEnums:      1,
 			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_proto_user_proto_goTypes,
 		DependencyIndexes: file_proto_user_proto_depIdxs,
+		EnumInfos:         file_proto_user_proto_enumTypes,
 		MessageInfos:      file_proto_user_proto_msgTypes,
 	}.Build()
 	File_proto_user_proto = out.File

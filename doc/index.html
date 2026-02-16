@@ -262,6 +262,10 @@
                 </li>
               
               
+                <li>
+                  <a href="#db_service.ColorTheme"><span class="badge">E</span>ColorTheme</a>
+                </li>
+              
               
               
                 <li>
@@ -586,7 +590,7 @@
             <tbody>
               
                 <tr>
-                  <td>name</td>
+                  <td>login</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -796,9 +800,16 @@
                 </tr>
               
                 <tr>
-                  <td>name</td>
+                  <td>login</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>theme</td>
+                  <td><a href="#db_service.ColorTheme">ColorTheme</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -827,8 +838,15 @@
                 </tr>
               
                 <tr>
-                  <td>name</td>
+                  <td>login</td>
                   <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>colorTheme</td>
+                  <td><a href="#db_service.ColorTheme">ColorTheme</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -872,6 +890,35 @@
         
       
 
+      
+        <h3 id="db_service.ColorTheme">ColorTheme</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>AUTO</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>LIGHT</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>DARK</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       

@@ -18,11 +18,18 @@ service UserService {
 
 message User {
   int64 id = 1;
-  string name = 2;
+  string login = 2;
+  ColorTheme colorTheme = 3;
+}
+
+enum ColorTheme {
+  AUTO = 0;
+  LIGHT = 1;
+  DARK = 2;
 }
 
 message CreateUserRequest {
-  string name = 1;
+  string login = 1;
   string password = 2;
 }
 
@@ -42,7 +49,8 @@ message GetUserRequest {
 
 message UpdateUserRequest {
   int64 id = 1;
-  string name = 2;
+  optional string login = 2;
+  optional ColorTheme theme = 3;
 }
 
 message UpdatePasswordRequest {

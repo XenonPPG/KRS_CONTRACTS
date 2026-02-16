@@ -26,6 +26,8 @@
     - [User](#db_service-User)
     - [VerifyPasswordRequest](#db_service-VerifyPasswordRequest)
   
+    - [ColorTheme](#db_service-ColorTheme)
+  
     - [UserService](#db_service-UserService)
   
 - [Scalar Value Types](#scalar-value-types)
@@ -191,7 +193,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
+| login | [string](#string) |  |  |
 | password | [string](#string) |  |  |
 
 
@@ -302,7 +304,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
-| name | [string](#string) |  |  |
+| login | [string](#string) | optional |  |
+| theme | [ColorTheme](#db_service-ColorTheme) | optional |  |
 
 
 
@@ -318,7 +321,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
-| name | [string](#string) |  |  |
+| login | [string](#string) |  |  |
+| colorTheme | [ColorTheme](#db_service-ColorTheme) |  |  |
 
 
 
@@ -341,6 +345,19 @@
 
 
  
+
+
+<a name="db_service-ColorTheme"></a>
+
+### ColorTheme
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| AUTO | 0 |  |
+| LIGHT | 1 |  |
+| DARK | 2 |  |
+
 
  
 
