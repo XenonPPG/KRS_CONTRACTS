@@ -19,7 +19,7 @@ service UserService {
 message User {
   int64 id = 1;
   string login = 2;
-  optional ColorTheme colorTheme = 3;
+  ColorTheme colorTheme = 3;
 }
 
 enum ColorTheme {
