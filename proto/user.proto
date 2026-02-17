@@ -13,13 +13,14 @@ service UserService {
   rpc UpdateUser(UpdateUserRequest) returns (User);
   rpc UpdatePassword(UpdatePasswordRequest) returns (google.protobuf.Empty);
   rpc DeleteUser(DeleteUserRequest) returns (google.protobuf.Empty);
-  rpc VerifyPassword(VerifyPasswordRequest) returns (IsValidResponse);
+  rpc Login(LoginRequest) returns (User);
 }
 
 message User {
   int64 id = 1;
   string login = 2;
-  optional ColorTheme colorTheme = 3;
+  optional UserRole role = 3;
+  optional ColorTheme colorTheme = 4;
 }
 
 enum ColorTheme {
@@ -29,10 +30,16 @@ enum ColorTheme {
   DARK = 3;
 }
 
+enum UserRole {
+  DEFAULT = 0;
+  ADMIN = 1;
+}
+
 message CreateUserRequest {
   string login = 1;
   string password = 2;
-  optional ColorTheme colorTheme = 3;
+  UserRole role = 3;
+  optional ColorTheme colorTheme = 4;
 }
 
 message GetAllUsersRequest {
@@ -52,12 +59,12 @@ message GetUserRequest {
 message UpdateUserRequest {
   int64 id = 1;
   optional string login = 2;
-  optional ColorTheme colorTheme = 3;
+  optional UserRole role = 3;
+  optional ColorTheme colorTheme = 4;
 }
 
 message UpdatePasswordRequest {
   int64 id = 1;
-  string oldPassword = 2;
   string newPassword = 3;
 }
 
@@ -65,11 +72,7 @@ message DeleteUserRequest {
   int64 id = 1;
 }
 
-message VerifyPasswordRequest {
-  int64 id = 1;
+message LoginRequest{
+  string login = 1;
   string password = 2;
-}
-
-message IsValidResponse {
-  bool valid = 1;
 }

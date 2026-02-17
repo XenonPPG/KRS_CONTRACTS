@@ -74,11 +74,58 @@ func (ColorTheme) EnumDescriptor() ([]byte, []int) {
 	return file_proto_user_proto_rawDescGZIP(), []int{0}
 }
 
+type UserRole int32
+
+const (
+	UserRole_DEFAULT UserRole = 0
+	UserRole_ADMIN   UserRole = 1
+)
+
+// Enum value maps for UserRole.
+var (
+	UserRole_name = map[int32]string{
+		0: "DEFAULT",
+		1: "ADMIN",
+	}
+	UserRole_value = map[string]int32{
+		"DEFAULT": 0,
+		"ADMIN":   1,
+	}
+)
+
+func (x UserRole) Enum() *UserRole {
+	p := new(UserRole)
+	*p = x
+	return p
+}
+
+func (x UserRole) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (UserRole) Descriptor() protoreflect.EnumDescriptor {
+	return file_proto_user_proto_enumTypes[1].Descriptor()
+}
+
+func (UserRole) Type() protoreflect.EnumType {
+	return &file_proto_user_proto_enumTypes[1]
+}
+
+func (x UserRole) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use UserRole.Descriptor instead.
+func (UserRole) EnumDescriptor() ([]byte, []int) {
+	return file_proto_user_proto_rawDescGZIP(), []int{1}
+}
+
 type User struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Login         string                 `protobuf:"bytes,2,opt,name=login,proto3" json:"login,omitempty"`
-	ColorTheme    *ColorTheme            `protobuf:"varint,3,opt,name=colorTheme,proto3,enum=db_service.ColorTheme,oneof" json:"colorTheme,omitempty"`
+	Role          *UserRole              `protobuf:"varint,3,opt,name=role,proto3,enum=db_service.UserRole,oneof" json:"role,omitempty"`
+	ColorTheme    *ColorTheme            `protobuf:"varint,4,opt,name=colorTheme,proto3,enum=db_service.ColorTheme,oneof" json:"colorTheme,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -127,6 +174,13 @@ func (x *User) GetLogin() string {
 	return ""
 }
 
+func (x *User) GetRole() UserRole {
+	if x != nil && x.Role != nil {
+		return *x.Role
+	}
+	return UserRole_DEFAULT
+}
+
 func (x *User) GetColorTheme() ColorTheme {
 	if x != nil && x.ColorTheme != nil {
 		return *x.ColorTheme
@@ -138,7 +192,8 @@ type CreateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Login         string                 `protobuf:"bytes,1,opt,name=login,proto3" json:"login,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	ColorTheme    *ColorTheme            `protobuf:"varint,3,opt,name=colorTheme,proto3,enum=db_service.ColorTheme,oneof" json:"colorTheme,omitempty"`
+	Role          UserRole               `protobuf:"varint,3,opt,name=role,proto3,enum=db_service.UserRole" json:"role,omitempty"`
+	ColorTheme    *ColorTheme            `protobuf:"varint,4,opt,name=colorTheme,proto3,enum=db_service.ColorTheme,oneof" json:"colorTheme,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -185,6 +240,13 @@ func (x *CreateUserRequest) GetPassword() string {
 		return x.Password
 	}
 	return ""
+}
+
+func (x *CreateUserRequest) GetRole() UserRole {
+	if x != nil {
+		return x.Role
+	}
+	return UserRole_DEFAULT
 }
 
 func (x *CreateUserRequest) GetColorTheme() ColorTheme {
@@ -346,7 +408,8 @@ type UpdateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Login         *string                `protobuf:"bytes,2,opt,name=login,proto3,oneof" json:"login,omitempty"`
-	ColorTheme    *ColorTheme            `protobuf:"varint,3,opt,name=colorTheme,proto3,enum=db_service.ColorTheme,oneof" json:"colorTheme,omitempty"`
+	Role          *UserRole              `protobuf:"varint,3,opt,name=role,proto3,enum=db_service.UserRole,oneof" json:"role,omitempty"`
+	ColorTheme    *ColorTheme            `protobuf:"varint,4,opt,name=colorTheme,proto3,enum=db_service.ColorTheme,oneof" json:"colorTheme,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -395,6 +458,13 @@ func (x *UpdateUserRequest) GetLogin() string {
 	return ""
 }
 
+func (x *UpdateUserRequest) GetRole() UserRole {
+	if x != nil && x.Role != nil {
+		return *x.Role
+	}
+	return UserRole_DEFAULT
+}
+
 func (x *UpdateUserRequest) GetColorTheme() ColorTheme {
 	if x != nil && x.ColorTheme != nil {
 		return *x.ColorTheme
@@ -405,7 +475,6 @@ func (x *UpdateUserRequest) GetColorTheme() ColorTheme {
 type UpdatePasswordRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	OldPassword   string                 `protobuf:"bytes,2,opt,name=oldPassword,proto3" json:"oldPassword,omitempty"`
 	NewPassword   string                 `protobuf:"bytes,3,opt,name=newPassword,proto3" json:"newPassword,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -446,13 +515,6 @@ func (x *UpdatePasswordRequest) GetId() int64 {
 		return x.Id
 	}
 	return 0
-}
-
-func (x *UpdatePasswordRequest) GetOldPassword() string {
-	if x != nil {
-		return x.OldPassword
-	}
-	return ""
 }
 
 func (x *UpdatePasswordRequest) GetNewPassword() string {
@@ -506,28 +568,28 @@ func (x *DeleteUserRequest) GetId() int64 {
 	return 0
 }
 
-type VerifyPasswordRequest struct {
+type LoginRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Login         string                 `protobuf:"bytes,1,opt,name=login,proto3" json:"login,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *VerifyPasswordRequest) Reset() {
-	*x = VerifyPasswordRequest{}
+func (x *LoginRequest) Reset() {
+	*x = LoginRequest{}
 	mi := &file_proto_user_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *VerifyPasswordRequest) String() string {
+func (x *LoginRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*VerifyPasswordRequest) ProtoMessage() {}
+func (*LoginRequest) ProtoMessage() {}
 
-func (x *VerifyPasswordRequest) ProtoReflect() protoreflect.Message {
+func (x *LoginRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_user_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -539,67 +601,23 @@ func (x *VerifyPasswordRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use VerifyPasswordRequest.ProtoReflect.Descriptor instead.
-func (*VerifyPasswordRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use LoginRequest.ProtoReflect.Descriptor instead.
+func (*LoginRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *VerifyPasswordRequest) GetId() int64 {
+func (x *LoginRequest) GetLogin() string {
 	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *VerifyPasswordRequest) GetPassword() string {
-	if x != nil {
-		return x.Password
+		return x.Login
 	}
 	return ""
 }
 
-type IsValidResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Valid         bool                   `protobuf:"varint,1,opt,name=valid,proto3" json:"valid,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *IsValidResponse) Reset() {
-	*x = IsValidResponse{}
-	mi := &file_proto_user_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *IsValidResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*IsValidResponse) ProtoMessage() {}
-
-func (x *IsValidResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_user_proto_msgTypes[9]
+func (x *LoginRequest) GetPassword() string {
 	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
+		return x.Password
 	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use IsValidResponse.ProtoReflect.Descriptor instead.
-func (*IsValidResponse) Descriptor() ([]byte, []int) {
-	return file_proto_user_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *IsValidResponse) GetValid() bool {
-	if x != nil {
-		return x.Valid
-	}
-	return false
+	return ""
 }
 
 var File_proto_user_proto protoreflect.FileDescriptor
@@ -607,19 +625,22 @@ var File_proto_user_proto protoreflect.FileDescriptor
 const file_proto_user_proto_rawDesc = "" +
 	"\n" +
 	"\x10proto/user.proto\x12\n" +
-	"db_service\x1a\x1bgoogle/protobuf/empty.proto\"x\n" +
+	"db_service\x1a\x1bgoogle/protobuf/empty.proto\"\xb0\x01\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
-	"\x05login\x18\x02 \x01(\tR\x05login\x12;\n" +
+	"\x05login\x18\x02 \x01(\tR\x05login\x12-\n" +
+	"\x04role\x18\x03 \x01(\x0e2\x14.db_service.UserRoleH\x00R\x04role\x88\x01\x01\x12;\n" +
 	"\n" +
-	"colorTheme\x18\x03 \x01(\x0e2\x16.db_service.ColorThemeH\x00R\n" +
-	"colorTheme\x88\x01\x01B\r\n" +
-	"\v_colorTheme\"\x91\x01\n" +
+	"colorTheme\x18\x04 \x01(\x0e2\x16.db_service.ColorThemeH\x01R\n" +
+	"colorTheme\x88\x01\x01B\a\n" +
+	"\x05_roleB\r\n" +
+	"\v_colorTheme\"\xbb\x01\n" +
 	"\x11CreateUserRequest\x12\x14\n" +
 	"\x05login\x18\x01 \x01(\tR\x05login\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\x12;\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\x12(\n" +
+	"\x04role\x18\x03 \x01(\x0e2\x14.db_service.UserRoleR\x04role\x12;\n" +
 	"\n" +
-	"colorTheme\x18\x03 \x01(\x0e2\x16.db_service.ColorThemeH\x00R\n" +
+	"colorTheme\x18\x04 \x01(\x0e2\x16.db_service.ColorThemeH\x00R\n" +
 	"colorTheme\x88\x01\x01B\r\n" +
 	"\v_colorTheme\"B\n" +
 	"\x12GetAllUsersRequest\x12\x14\n" +
@@ -630,32 +651,34 @@ const file_proto_user_proto_rawDesc = "" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\" \n" +
 	"\x0eGetUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"\x94\x01\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"\xcc\x01\n" +
 	"\x11UpdateUserRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x19\n" +
-	"\x05login\x18\x02 \x01(\tH\x00R\x05login\x88\x01\x01\x12;\n" +
+	"\x05login\x18\x02 \x01(\tH\x00R\x05login\x88\x01\x01\x12-\n" +
+	"\x04role\x18\x03 \x01(\x0e2\x14.db_service.UserRoleH\x01R\x04role\x88\x01\x01\x12;\n" +
 	"\n" +
-	"colorTheme\x18\x03 \x01(\x0e2\x16.db_service.ColorThemeH\x01R\n" +
+	"colorTheme\x18\x04 \x01(\x0e2\x16.db_service.ColorThemeH\x02R\n" +
 	"colorTheme\x88\x01\x01B\b\n" +
-	"\x06_loginB\r\n" +
-	"\v_colorTheme\"k\n" +
+	"\x06_loginB\a\n" +
+	"\x05_roleB\r\n" +
+	"\v_colorTheme\"I\n" +
 	"\x15UpdatePasswordRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12 \n" +
-	"\voldPassword\x18\x02 \x01(\tR\voldPassword\x12 \n" +
 	"\vnewPassword\x18\x03 \x01(\tR\vnewPassword\"#\n" +
 	"\x11DeleteUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"C\n" +
-	"\x15VerifyPasswordRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"'\n" +
-	"\x0fIsValidResponse\x12\x14\n" +
-	"\x05valid\x18\x01 \x01(\bR\x05valid*<\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"@\n" +
+	"\fLoginRequest\x12\x14\n" +
+	"\x05login\x18\x01 \x01(\tR\x05login\x12\x1a\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword*<\n" +
 	"\n" +
 	"ColorTheme\x12\x0f\n" +
 	"\vUNSPECIFIED\x10\x00\x12\b\n" +
 	"\x04AUTO\x10\x01\x12\t\n" +
 	"\x05LIGHT\x10\x02\x12\b\n" +
-	"\x04DARK\x10\x032\xf8\x03\n" +
+	"\x04DARK\x10\x03*\"\n" +
+	"\bUserRole\x12\v\n" +
+	"\aDEFAULT\x10\x00\x12\t\n" +
+	"\x05ADMIN\x10\x012\xdb\x03\n" +
 	"\vUserService\x12=\n" +
 	"\n" +
 	"CreateUser\x12\x1d.db_service.CreateUserRequest\x1a\x10.db_service.User\x12N\n" +
@@ -665,8 +688,8 @@ const file_proto_user_proto_rawDesc = "" +
 	"UpdateUser\x12\x1d.db_service.UpdateUserRequest\x1a\x10.db_service.User\x12K\n" +
 	"\x0eUpdatePassword\x12!.db_service.UpdatePasswordRequest\x1a\x16.google.protobuf.Empty\x12C\n" +
 	"\n" +
-	"DeleteUser\x12\x1d.db_service.DeleteUserRequest\x1a\x16.google.protobuf.Empty\x12P\n" +
-	"\x0eVerifyPassword\x12!.db_service.VerifyPasswordRequest\x1a\x1b.db_service.IsValidResponseB7Z5github.com/XenonPPG/KRS_CONTRACTS/gen/user_v1;user_v1b\x06proto3"
+	"DeleteUser\x12\x1d.db_service.DeleteUserRequest\x1a\x16.google.protobuf.Empty\x123\n" +
+	"\x05Login\x12\x18.db_service.LoginRequest\x1a\x10.db_service.UserB7Z5github.com/XenonPPG/KRS_CONTRACTS/gen/user_v1;user_v1b\x06proto3"
 
 var (
 	file_proto_user_proto_rawDescOnce sync.Once
@@ -680,46 +703,49 @@ func file_proto_user_proto_rawDescGZIP() []byte {
 	return file_proto_user_proto_rawDescData
 }
 
-var file_proto_user_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_proto_user_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_proto_user_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+var file_proto_user_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_proto_user_proto_goTypes = []any{
 	(ColorTheme)(0),               // 0: db_service.ColorTheme
-	(*User)(nil),                  // 1: db_service.User
-	(*CreateUserRequest)(nil),     // 2: db_service.CreateUserRequest
-	(*GetAllUsersRequest)(nil),    // 3: db_service.GetAllUsersRequest
-	(*GetAllUsersResponse)(nil),   // 4: db_service.GetAllUsersResponse
-	(*GetUserRequest)(nil),        // 5: db_service.GetUserRequest
-	(*UpdateUserRequest)(nil),     // 6: db_service.UpdateUserRequest
-	(*UpdatePasswordRequest)(nil), // 7: db_service.UpdatePasswordRequest
-	(*DeleteUserRequest)(nil),     // 8: db_service.DeleteUserRequest
-	(*VerifyPasswordRequest)(nil), // 9: db_service.VerifyPasswordRequest
-	(*IsValidResponse)(nil),       // 10: db_service.IsValidResponse
+	(UserRole)(0),                 // 1: db_service.UserRole
+	(*User)(nil),                  // 2: db_service.User
+	(*CreateUserRequest)(nil),     // 3: db_service.CreateUserRequest
+	(*GetAllUsersRequest)(nil),    // 4: db_service.GetAllUsersRequest
+	(*GetAllUsersResponse)(nil),   // 5: db_service.GetAllUsersResponse
+	(*GetUserRequest)(nil),        // 6: db_service.GetUserRequest
+	(*UpdateUserRequest)(nil),     // 7: db_service.UpdateUserRequest
+	(*UpdatePasswordRequest)(nil), // 8: db_service.UpdatePasswordRequest
+	(*DeleteUserRequest)(nil),     // 9: db_service.DeleteUserRequest
+	(*LoginRequest)(nil),          // 10: db_service.LoginRequest
 	(*emptypb.Empty)(nil),         // 11: google.protobuf.Empty
 }
 var file_proto_user_proto_depIdxs = []int32{
-	0,  // 0: db_service.User.colorTheme:type_name -> db_service.ColorTheme
-	0,  // 1: db_service.CreateUserRequest.colorTheme:type_name -> db_service.ColorTheme
-	1,  // 2: db_service.GetAllUsersResponse.users:type_name -> db_service.User
-	0,  // 3: db_service.UpdateUserRequest.colorTheme:type_name -> db_service.ColorTheme
-	2,  // 4: db_service.UserService.CreateUser:input_type -> db_service.CreateUserRequest
-	3,  // 5: db_service.UserService.GetAllUsers:input_type -> db_service.GetAllUsersRequest
-	5,  // 6: db_service.UserService.GetUser:input_type -> db_service.GetUserRequest
-	6,  // 7: db_service.UserService.UpdateUser:input_type -> db_service.UpdateUserRequest
-	7,  // 8: db_service.UserService.UpdatePassword:input_type -> db_service.UpdatePasswordRequest
-	8,  // 9: db_service.UserService.DeleteUser:input_type -> db_service.DeleteUserRequest
-	9,  // 10: db_service.UserService.VerifyPassword:input_type -> db_service.VerifyPasswordRequest
-	1,  // 11: db_service.UserService.CreateUser:output_type -> db_service.User
-	4,  // 12: db_service.UserService.GetAllUsers:output_type -> db_service.GetAllUsersResponse
-	1,  // 13: db_service.UserService.GetUser:output_type -> db_service.User
-	1,  // 14: db_service.UserService.UpdateUser:output_type -> db_service.User
-	11, // 15: db_service.UserService.UpdatePassword:output_type -> google.protobuf.Empty
-	11, // 16: db_service.UserService.DeleteUser:output_type -> google.protobuf.Empty
-	10, // 17: db_service.UserService.VerifyPassword:output_type -> db_service.IsValidResponse
-	11, // [11:18] is the sub-list for method output_type
-	4,  // [4:11] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+	1,  // 0: db_service.User.role:type_name -> db_service.UserRole
+	0,  // 1: db_service.User.colorTheme:type_name -> db_service.ColorTheme
+	1,  // 2: db_service.CreateUserRequest.role:type_name -> db_service.UserRole
+	0,  // 3: db_service.CreateUserRequest.colorTheme:type_name -> db_service.ColorTheme
+	2,  // 4: db_service.GetAllUsersResponse.users:type_name -> db_service.User
+	1,  // 5: db_service.UpdateUserRequest.role:type_name -> db_service.UserRole
+	0,  // 6: db_service.UpdateUserRequest.colorTheme:type_name -> db_service.ColorTheme
+	3,  // 7: db_service.UserService.CreateUser:input_type -> db_service.CreateUserRequest
+	4,  // 8: db_service.UserService.GetAllUsers:input_type -> db_service.GetAllUsersRequest
+	6,  // 9: db_service.UserService.GetUser:input_type -> db_service.GetUserRequest
+	7,  // 10: db_service.UserService.UpdateUser:input_type -> db_service.UpdateUserRequest
+	8,  // 11: db_service.UserService.UpdatePassword:input_type -> db_service.UpdatePasswordRequest
+	9,  // 12: db_service.UserService.DeleteUser:input_type -> db_service.DeleteUserRequest
+	10, // 13: db_service.UserService.Login:input_type -> db_service.LoginRequest
+	2,  // 14: db_service.UserService.CreateUser:output_type -> db_service.User
+	5,  // 15: db_service.UserService.GetAllUsers:output_type -> db_service.GetAllUsersResponse
+	2,  // 16: db_service.UserService.GetUser:output_type -> db_service.User
+	2,  // 17: db_service.UserService.UpdateUser:output_type -> db_service.User
+	11, // 18: db_service.UserService.UpdatePassword:output_type -> google.protobuf.Empty
+	11, // 19: db_service.UserService.DeleteUser:output_type -> google.protobuf.Empty
+	2,  // 20: db_service.UserService.Login:output_type -> db_service.User
+	14, // [14:21] is the sub-list for method output_type
+	7,  // [7:14] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_proto_init() }
@@ -735,8 +761,8 @@ func file_proto_user_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_user_proto_rawDesc), len(file_proto_user_proto_rawDesc)),
-			NumEnums:      1,
-			NumMessages:   10,
+			NumEnums:      2,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -242,7 +242,7 @@
                 </li>
               
                 <li>
-                  <a href="#db_service.IsValidResponse"><span class="badge">M</span>IsValidResponse</a>
+                  <a href="#db_service.LoginRequest"><span class="badge">M</span>LoginRequest</a>
                 </li>
               
                 <li>
@@ -257,13 +257,13 @@
                   <a href="#db_service.User"><span class="badge">M</span>User</a>
                 </li>
               
-                <li>
-                  <a href="#db_service.VerifyPasswordRequest"><span class="badge">M</span>VerifyPasswordRequest</a>
-                </li>
-              
               
                 <li>
                   <a href="#db_service.ColorTheme"><span class="badge">E</span>ColorTheme</a>
+                </li>
+              
+                <li>
+                  <a href="#db_service.UserRole"><span class="badge">E</span>UserRole</a>
                 </li>
               
               
@@ -604,6 +604,13 @@
                 </tr>
               
                 <tr>
+                  <td>role</td>
+                  <td><a href="#db_service.UserRole">UserRole</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>colorTheme</td>
                   <td><a href="#db_service.ColorTheme">ColorTheme</a></td>
                   <td>optional</td>
@@ -727,7 +734,7 @@
 
         
       
-        <h3 id="db_service.IsValidResponse">IsValidResponse</h3>
+        <h3 id="db_service.LoginRequest">LoginRequest</h3>
         <p></p>
 
         
@@ -738,8 +745,15 @@
             <tbody>
               
                 <tr>
-                  <td>valid</td>
-                  <td><a href="#bool">bool</a></td>
+                  <td>login</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>password</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -764,13 +778,6 @@
                 <tr>
                   <td>id</td>
                   <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>oldPassword</td>
-                  <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -814,6 +821,13 @@
                 </tr>
               
                 <tr>
+                  <td>role</td>
+                  <td><a href="#db_service.UserRole">UserRole</a></td>
+                  <td>optional</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
                   <td>colorTheme</td>
                   <td><a href="#db_service.ColorTheme">ColorTheme</a></td>
                   <td>optional</td>
@@ -852,40 +866,16 @@
                 </tr>
               
                 <tr>
-                  <td>colorTheme</td>
-                  <td><a href="#db_service.ColorTheme">ColorTheme</a></td>
+                  <td>role</td>
+                  <td><a href="#db_service.UserRole">UserRole</a></td>
                   <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="db_service.VerifyPasswordRequest">VerifyPasswordRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
                 <tr>
-                  <td>id</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>password</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
+                  <td>colorTheme</td>
+                  <td><a href="#db_service.ColorTheme">ColorTheme</a></td>
+                  <td>optional</td>
                   <td><p> </p></td>
                 </tr>
               
@@ -927,6 +917,29 @@
               <tr>
                 <td>DARK</td>
                 <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="db_service.UserRole">UserRole</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>DEFAULT</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ADMIN</td>
+                <td>1</td>
                 <td><p></p></td>
               </tr>
             
@@ -988,9 +1001,9 @@
               </tr>
             
               <tr>
-                <td>VerifyPassword</td>
-                <td><a href="#db_service.VerifyPasswordRequest">VerifyPasswordRequest</a></td>
-                <td><a href="#db_service.IsValidResponse">IsValidResponse</a></td>
+                <td>Login</td>
+                <td><a href="#db_service.LoginRequest">LoginRequest</a></td>
+                <td><a href="#db_service.User">User</a></td>
                 <td><p></p></td>
               </tr>
             

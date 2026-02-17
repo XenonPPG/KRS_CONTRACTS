@@ -20,13 +20,13 @@
     - [GetAllUsersRequest](#db_service-GetAllUsersRequest)
     - [GetAllUsersResponse](#db_service-GetAllUsersResponse)
     - [GetUserRequest](#db_service-GetUserRequest)
-    - [IsValidResponse](#db_service-IsValidResponse)
+    - [LoginRequest](#db_service-LoginRequest)
     - [UpdatePasswordRequest](#db_service-UpdatePasswordRequest)
     - [UpdateUserRequest](#db_service-UpdateUserRequest)
     - [User](#db_service-User)
-    - [VerifyPasswordRequest](#db_service-VerifyPasswordRequest)
   
     - [ColorTheme](#db_service-ColorTheme)
+    - [UserRole](#db_service-UserRole)
   
     - [UserService](#db_service-UserService)
   
@@ -195,6 +195,7 @@
 | ----- | ---- | ----- | ----------- |
 | login | [string](#string) |  |  |
 | password | [string](#string) |  |  |
+| role | [UserRole](#db_service-UserRole) |  |  |
 | colorTheme | [ColorTheme](#db_service-ColorTheme) | optional |  |
 
 
@@ -264,15 +265,16 @@
 
 
 
-<a name="db_service-IsValidResponse"></a>
+<a name="db_service-LoginRequest"></a>
 
-### IsValidResponse
+### LoginRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| valid | [bool](#bool) |  |  |
+| login | [string](#string) |  |  |
+| password | [string](#string) |  |  |
 
 
 
@@ -288,7 +290,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
-| oldPassword | [string](#string) |  |  |
 | newPassword | [string](#string) |  |  |
 
 
@@ -306,6 +307,7 @@
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
 | login | [string](#string) | optional |  |
+| role | [UserRole](#db_service-UserRole) | optional |  |
 | colorTheme | [ColorTheme](#db_service-ColorTheme) | optional |  |
 
 
@@ -323,23 +325,8 @@
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
 | login | [string](#string) |  |  |
+| role | [UserRole](#db_service-UserRole) | optional |  |
 | colorTheme | [ColorTheme](#db_service-ColorTheme) | optional |  |
-
-
-
-
-
-
-<a name="db_service-VerifyPasswordRequest"></a>
-
-### VerifyPasswordRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [int64](#int64) |  |  |
-| password | [string](#string) |  |  |
 
 
 
@@ -361,6 +348,18 @@
 | DARK | 3 |  |
 
 
+
+<a name="db_service-UserRole"></a>
+
+### UserRole
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| DEFAULT | 0 |  |
+| ADMIN | 1 |  |
+
+
  
 
  
@@ -379,7 +378,7 @@
 | UpdateUser | [UpdateUserRequest](#db_service-UpdateUserRequest) | [User](#db_service-User) |  |
 | UpdatePassword | [UpdatePasswordRequest](#db_service-UpdatePasswordRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
 | DeleteUser | [DeleteUserRequest](#db_service-DeleteUserRequest) | [.google.protobuf.Empty](#google-protobuf-Empty) |  |
-| VerifyPassword | [VerifyPasswordRequest](#db_service-VerifyPasswordRequest) | [IsValidResponse](#db_service-IsValidResponse) |  |
+| Login | [LoginRequest](#db_service-LoginRequest) | [User](#db_service-User) |  |
 
  
 
