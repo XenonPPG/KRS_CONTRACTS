@@ -25,22 +25,25 @@ const (
 type ColorTheme int32
 
 const (
-	ColorTheme_AUTO  ColorTheme = 0
-	ColorTheme_LIGHT ColorTheme = 1
-	ColorTheme_DARK  ColorTheme = 2
+	ColorTheme_UNSPECIFIED ColorTheme = 0
+	ColorTheme_AUTO        ColorTheme = 1
+	ColorTheme_LIGHT       ColorTheme = 2
+	ColorTheme_DARK        ColorTheme = 3
 )
 
 // Enum value maps for ColorTheme.
 var (
 	ColorTheme_name = map[int32]string{
-		0: "AUTO",
-		1: "LIGHT",
-		2: "DARK",
+		0: "UNSPECIFIED",
+		1: "AUTO",
+		2: "LIGHT",
+		3: "DARK",
 	}
 	ColorTheme_value = map[string]int32{
-		"AUTO":  0,
-		"LIGHT": 1,
-		"DARK":  2,
+		"UNSPECIFIED": 0,
+		"AUTO":        1,
+		"LIGHT":       2,
+		"DARK":        3,
 	}
 )
 
@@ -128,7 +131,7 @@ func (x *User) GetColorTheme() ColorTheme {
 	if x != nil && x.ColorTheme != nil {
 		return *x.ColorTheme
 	}
-	return ColorTheme_AUTO
+	return ColorTheme_UNSPECIFIED
 }
 
 type CreateUserRequest struct {
@@ -188,7 +191,7 @@ func (x *CreateUserRequest) GetColorTheme() ColorTheme {
 	if x != nil && x.ColorTheme != nil {
 		return *x.ColorTheme
 	}
-	return ColorTheme_AUTO
+	return ColorTheme_UNSPECIFIED
 }
 
 type GetAllUsersRequest struct {
@@ -396,7 +399,7 @@ func (x *UpdateUserRequest) GetColorTheme() ColorTheme {
 	if x != nil && x.ColorTheme != nil {
 		return *x.ColorTheme
 	}
-	return ColorTheme_AUTO
+	return ColorTheme_UNSPECIFIED
 }
 
 type UpdatePasswordRequest struct {
@@ -646,12 +649,13 @@ const file_proto_user_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"'\n" +
 	"\x0fIsValidResponse\x12\x14\n" +
-	"\x05valid\x18\x01 \x01(\bR\x05valid*+\n" +
+	"\x05valid\x18\x01 \x01(\bR\x05valid*<\n" +
 	"\n" +
-	"ColorTheme\x12\b\n" +
-	"\x04AUTO\x10\x00\x12\t\n" +
-	"\x05LIGHT\x10\x01\x12\b\n" +
-	"\x04DARK\x10\x022\xf8\x03\n" +
+	"ColorTheme\x12\x0f\n" +
+	"\vUNSPECIFIED\x10\x00\x12\b\n" +
+	"\x04AUTO\x10\x01\x12\t\n" +
+	"\x05LIGHT\x10\x02\x12\b\n" +
+	"\x04DARK\x10\x032\xf8\x03\n" +
 	"\vUserService\x12=\n" +
 	"\n" +
 	"CreateUser\x12\x1d.db_service.CreateUserRequest\x1a\x10.db_service.User\x12N\n" +

@@ -355,9 +355,10 @@
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| AUTO | 0 |  |
-| LIGHT | 1 |  |
-| DARK | 2 |  |
+| UNSPECIFIED | 0 |  |
+| AUTO | 1 |  |
+| LIGHT | 2 |  |
+| DARK | 3 |  |
 
 
  
