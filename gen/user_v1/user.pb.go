@@ -135,6 +135,7 @@ type CreateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Login         string                 `protobuf:"bytes,1,opt,name=login,proto3" json:"login,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	ColorTheme    *ColorTheme            `protobuf:"varint,3,opt,name=colorTheme,proto3,enum=db_service.ColorTheme,oneof" json:"colorTheme,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -181,6 +182,13 @@ func (x *CreateUserRequest) GetPassword() string {
 		return x.Password
 	}
 	return ""
+}
+
+func (x *CreateUserRequest) GetColorTheme() ColorTheme {
+	if x != nil && x.ColorTheme != nil {
+		return *x.ColorTheme
+	}
+	return ColorTheme_AUTO
 }
 
 type GetAllUsersRequest struct {
@@ -602,10 +610,14 @@ const file_proto_user_proto_rawDesc = "" +
 	"\x05login\x18\x02 \x01(\tR\x05login\x126\n" +
 	"\n" +
 	"colorTheme\x18\x03 \x01(\x0e2\x16.db_service.ColorThemeR\n" +
-	"colorTheme\"E\n" +
+	"colorTheme\"\x91\x01\n" +
 	"\x11CreateUserRequest\x12\x14\n" +
 	"\x05login\x18\x01 \x01(\tR\x05login\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"B\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\x12;\n" +
+	"\n" +
+	"colorTheme\x18\x03 \x01(\x0e2\x16.db_service.ColorThemeH\x00R\n" +
+	"colorTheme\x88\x01\x01B\r\n" +
+	"\v_colorTheme\"B\n" +
 	"\x12GetAllUsersRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x02 \x01(\x05R\x06offset\"^\n" +
@@ -679,27 +691,28 @@ var file_proto_user_proto_goTypes = []any{
 }
 var file_proto_user_proto_depIdxs = []int32{
 	0,  // 0: db_service.User.colorTheme:type_name -> db_service.ColorTheme
-	1,  // 1: db_service.GetAllUsersResponse.users:type_name -> db_service.User
-	0,  // 2: db_service.UpdateUserRequest.theme:type_name -> db_service.ColorTheme
-	2,  // 3: db_service.UserService.CreateUser:input_type -> db_service.CreateUserRequest
-	3,  // 4: db_service.UserService.GetAllUsers:input_type -> db_service.GetAllUsersRequest
-	5,  // 5: db_service.UserService.GetUser:input_type -> db_service.GetUserRequest
-	6,  // 6: db_service.UserService.UpdateUser:input_type -> db_service.UpdateUserRequest
-	7,  // 7: db_service.UserService.UpdatePassword:input_type -> db_service.UpdatePasswordRequest
-	8,  // 8: db_service.UserService.DeleteUser:input_type -> db_service.DeleteUserRequest
-	9,  // 9: db_service.UserService.VerifyPassword:input_type -> db_service.VerifyPasswordRequest
-	1,  // 10: db_service.UserService.CreateUser:output_type -> db_service.User
-	4,  // 11: db_service.UserService.GetAllUsers:output_type -> db_service.GetAllUsersResponse
-	1,  // 12: db_service.UserService.GetUser:output_type -> db_service.User
-	1,  // 13: db_service.UserService.UpdateUser:output_type -> db_service.User
-	11, // 14: db_service.UserService.UpdatePassword:output_type -> google.protobuf.Empty
-	11, // 15: db_service.UserService.DeleteUser:output_type -> google.protobuf.Empty
-	10, // 16: db_service.UserService.VerifyPassword:output_type -> db_service.IsValidResponse
-	10, // [10:17] is the sub-list for method output_type
-	3,  // [3:10] is the sub-list for method input_type
-	3,  // [3:3] is the sub-list for extension type_name
-	3,  // [3:3] is the sub-list for extension extendee
-	0,  // [0:3] is the sub-list for field type_name
+	0,  // 1: db_service.CreateUserRequest.colorTheme:type_name -> db_service.ColorTheme
+	1,  // 2: db_service.GetAllUsersResponse.users:type_name -> db_service.User
+	0,  // 3: db_service.UpdateUserRequest.theme:type_name -> db_service.ColorTheme
+	2,  // 4: db_service.UserService.CreateUser:input_type -> db_service.CreateUserRequest
+	3,  // 5: db_service.UserService.GetAllUsers:input_type -> db_service.GetAllUsersRequest
+	5,  // 6: db_service.UserService.GetUser:input_type -> db_service.GetUserRequest
+	6,  // 7: db_service.UserService.UpdateUser:input_type -> db_service.UpdateUserRequest
+	7,  // 8: db_service.UserService.UpdatePassword:input_type -> db_service.UpdatePasswordRequest
+	8,  // 9: db_service.UserService.DeleteUser:input_type -> db_service.DeleteUserRequest
+	9,  // 10: db_service.UserService.VerifyPassword:input_type -> db_service.VerifyPasswordRequest
+	1,  // 11: db_service.UserService.CreateUser:output_type -> db_service.User
+	4,  // 12: db_service.UserService.GetAllUsers:output_type -> db_service.GetAllUsersResponse
+	1,  // 13: db_service.UserService.GetUser:output_type -> db_service.User
+	1,  // 14: db_service.UserService.UpdateUser:output_type -> db_service.User
+	11, // 15: db_service.UserService.UpdatePassword:output_type -> google.protobuf.Empty
+	11, // 16: db_service.UserService.DeleteUser:output_type -> google.protobuf.Empty
+	10, // 17: db_service.UserService.VerifyPassword:output_type -> db_service.IsValidResponse
+	11, // [11:18] is the sub-list for method output_type
+	4,  // [4:11] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_proto_init() }
@@ -707,6 +720,7 @@ func file_proto_user_proto_init() {
 	if File_proto_user_proto != nil {
 		return
 	}
+	file_proto_user_proto_msgTypes[1].OneofWrappers = []any{}
 	file_proto_user_proto_msgTypes[5].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
