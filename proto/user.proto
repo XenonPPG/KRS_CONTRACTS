@@ -31,7 +31,7 @@ enum ColorTheme {
 message CreateUserRequest {
   string login = 1;
   string password = 2;
-  optional ColorTheme colorTheme = 3;
+  ColorTheme colorTheme = 3;
 }
 
 message GetAllUsersRequest {

@@ -135,7 +135,7 @@ type CreateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Login         string                 `protobuf:"bytes,1,opt,name=login,proto3" json:"login,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	ColorTheme    *ColorTheme            `protobuf:"varint,3,opt,name=colorTheme,proto3,enum=db_service.ColorTheme,oneof" json:"colorTheme,omitempty"`
+	ColorTheme    ColorTheme             `protobuf:"varint,3,opt,name=colorTheme,proto3,enum=db_service.ColorTheme" json:"colorTheme,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -185,8 +185,8 @@ func (x *CreateUserRequest) GetPassword() string {
 }
 
 func (x *CreateUserRequest) GetColorTheme() ColorTheme {
-	if x != nil && x.ColorTheme != nil {
-		return *x.ColorTheme
+	if x != nil {
+		return x.ColorTheme
 	}
 	return ColorTheme_AUTO
 }
@@ -610,14 +610,13 @@ const file_proto_user_proto_rawDesc = "" +
 	"\x05login\x18\x02 \x01(\tR\x05login\x126\n" +
 	"\n" +
 	"colorTheme\x18\x03 \x01(\x0e2\x16.db_service.ColorThemeR\n" +
-	"colorTheme\"\x91\x01\n" +
+	"colorTheme\"}\n" +
 	"\x11CreateUserRequest\x12\x14\n" +
 	"\x05login\x18\x01 \x01(\tR\x05login\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\x12;\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\x126\n" +
 	"\n" +
-	"colorTheme\x18\x03 \x01(\x0e2\x16.db_service.ColorThemeH\x00R\n" +
-	"colorTheme\x88\x01\x01B\r\n" +
-	"\v_colorTheme\"B\n" +
+	"colorTheme\x18\x03 \x01(\x0e2\x16.db_service.ColorThemeR\n" +
+	"colorTheme\"B\n" +
 	"\x12GetAllUsersRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x02 \x01(\x05R\x06offset\"^\n" +
@@ -720,7 +719,6 @@ func file_proto_user_proto_init() {
 	if File_proto_user_proto != nil {
 		return
 	}
-	file_proto_user_proto_msgTypes[1].OneofWrappers = []any{}
 	file_proto_user_proto_msgTypes[5].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

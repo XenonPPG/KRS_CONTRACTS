@@ -195,7 +195,7 @@
 | ----- | ---- | ----- | ----------- |
 | login | [string](#string) |  |  |
 | password | [string](#string) |  |  |
-| colorTheme | [ColorTheme](#db_service-ColorTheme) | optional |  |
+| colorTheme | [ColorTheme](#db_service-ColorTheme) |  |  |
 
 
 
