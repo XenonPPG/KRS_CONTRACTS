@@ -343,7 +343,7 @@ type UpdateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Login         *string                `protobuf:"bytes,2,opt,name=login,proto3,oneof" json:"login,omitempty"`
-	Theme         *ColorTheme            `protobuf:"varint,3,opt,name=theme,proto3,enum=db_service.ColorTheme,oneof" json:"theme,omitempty"`
+	ColorTheme    *ColorTheme            `protobuf:"varint,3,opt,name=colorTheme,proto3,enum=db_service.ColorTheme,oneof" json:"colorTheme,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -392,9 +392,9 @@ func (x *UpdateUserRequest) GetLogin() string {
 	return ""
 }
 
-func (x *UpdateUserRequest) GetTheme() ColorTheme {
-	if x != nil && x.Theme != nil {
-		return *x.Theme
+func (x *UpdateUserRequest) GetColorTheme() ColorTheme {
+	if x != nil && x.ColorTheme != nil {
+		return *x.ColorTheme
 	}
 	return ColorTheme_AUTO
 }
@@ -625,13 +625,15 @@ const file_proto_user_proto_rawDesc = "" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
 	"totalCount\" \n" +
 	"\x0eGetUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"\x85\x01\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"\x94\x01\n" +
 	"\x11UpdateUserRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x19\n" +
-	"\x05login\x18\x02 \x01(\tH\x00R\x05login\x88\x01\x01\x121\n" +
-	"\x05theme\x18\x03 \x01(\x0e2\x16.db_service.ColorThemeH\x01R\x05theme\x88\x01\x01B\b\n" +
-	"\x06_loginB\b\n" +
-	"\x06_theme\"k\n" +
+	"\x05login\x18\x02 \x01(\tH\x00R\x05login\x88\x01\x01\x12;\n" +
+	"\n" +
+	"colorTheme\x18\x03 \x01(\x0e2\x16.db_service.ColorThemeH\x01R\n" +
+	"colorTheme\x88\x01\x01B\b\n" +
+	"\x06_loginB\r\n" +
+	"\v_colorTheme\"k\n" +
 	"\x15UpdatePasswordRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12 \n" +
 	"\voldPassword\x18\x02 \x01(\tR\voldPassword\x12 \n" +
@@ -692,7 +694,7 @@ var file_proto_user_proto_depIdxs = []int32{
 	0,  // 0: db_service.User.colorTheme:type_name -> db_service.ColorTheme
 	0,  // 1: db_service.CreateUserRequest.colorTheme:type_name -> db_service.ColorTheme
 	1,  // 2: db_service.GetAllUsersResponse.users:type_name -> db_service.User
-	0,  // 3: db_service.UpdateUserRequest.theme:type_name -> db_service.ColorTheme
+	0,  // 3: db_service.UpdateUserRequest.colorTheme:type_name -> db_service.ColorTheme
 	2,  // 4: db_service.UserService.CreateUser:input_type -> db_service.CreateUserRequest
 	3,  // 5: db_service.UserService.GetAllUsers:input_type -> db_service.GetAllUsersRequest
 	5,  // 6: db_service.UserService.GetUser:input_type -> db_service.GetUserRequest

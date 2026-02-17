@@ -306,7 +306,7 @@
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
 | login | [string](#string) | optional |  |
-| theme | [ColorTheme](#db_service-ColorTheme) | optional |  |
+| colorTheme | [ColorTheme](#db_service-ColorTheme) | optional |  |
 
 
 

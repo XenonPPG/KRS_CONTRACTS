@@ -51,7 +51,7 @@ message GetUserRequest {
 message UpdateUserRequest {
   int64 id = 1;
   optional string login = 2;
-  optional ColorTheme theme = 3;
+  optional ColorTheme colorTheme = 3;
 }
 
 message UpdatePasswordRequest {
