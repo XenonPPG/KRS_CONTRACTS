@@ -195,7 +195,7 @@
 | ----- | ---- | ----- | ----------- |
 | login | [string](#string) |  |  |
 | password | [string](#string) |  |  |
-| colorTheme | [ColorTheme](#db_service-ColorTheme) |  |  |
+| colorTheme | [ColorTheme](#db_service-ColorTheme) | optional |  |
 
 
 
@@ -323,7 +323,7 @@
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
 | login | [string](#string) |  |  |
-| colorTheme | [ColorTheme](#db_service-ColorTheme) |  |  |
+| colorTheme | [ColorTheme](#db_service-ColorTheme) | optional |  |
 
 
 

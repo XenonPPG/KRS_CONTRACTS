@@ -75,7 +75,7 @@ type User struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Login         string                 `protobuf:"bytes,2,opt,name=login,proto3" json:"login,omitempty"`
-	ColorTheme    ColorTheme             `protobuf:"varint,3,opt,name=colorTheme,proto3,enum=db_service.ColorTheme" json:"colorTheme,omitempty"`
+	ColorTheme    *ColorTheme            `protobuf:"varint,3,opt,name=colorTheme,proto3,enum=db_service.ColorTheme,oneof" json:"colorTheme,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -125,8 +125,8 @@ func (x *User) GetLogin() string {
 }
 
 func (x *User) GetColorTheme() ColorTheme {
-	if x != nil {
-		return x.ColorTheme
+	if x != nil && x.ColorTheme != nil {
+		return *x.ColorTheme
 	}
 	return ColorTheme_AUTO
 }
@@ -135,7 +135,7 @@ type CreateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Login         string                 `protobuf:"bytes,1,opt,name=login,proto3" json:"login,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	ColorTheme    ColorTheme             `protobuf:"varint,3,opt,name=colorTheme,proto3,enum=db_service.ColorTheme" json:"colorTheme,omitempty"`
+	ColorTheme    *ColorTheme            `protobuf:"varint,3,opt,name=colorTheme,proto3,enum=db_service.ColorTheme,oneof" json:"colorTheme,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -185,8 +185,8 @@ func (x *CreateUserRequest) GetPassword() string {
 }
 
 func (x *CreateUserRequest) GetColorTheme() ColorTheme {
-	if x != nil {
-		return x.ColorTheme
+	if x != nil && x.ColorTheme != nil {
+		return *x.ColorTheme
 	}
 	return ColorTheme_AUTO
 }
@@ -604,19 +604,21 @@ var File_proto_user_proto protoreflect.FileDescriptor
 const file_proto_user_proto_rawDesc = "" +
 	"\n" +
 	"\x10proto/user.proto\x12\n" +
-	"db_service\x1a\x1bgoogle/protobuf/empty.proto\"d\n" +
+	"db_service\x1a\x1bgoogle/protobuf/empty.proto\"x\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
-	"\x05login\x18\x02 \x01(\tR\x05login\x126\n" +
+	"\x05login\x18\x02 \x01(\tR\x05login\x12;\n" +
 	"\n" +
-	"colorTheme\x18\x03 \x01(\x0e2\x16.db_service.ColorThemeR\n" +
-	"colorTheme\"}\n" +
+	"colorTheme\x18\x03 \x01(\x0e2\x16.db_service.ColorThemeH\x00R\n" +
+	"colorTheme\x88\x01\x01B\r\n" +
+	"\v_colorTheme\"\x91\x01\n" +
 	"\x11CreateUserRequest\x12\x14\n" +
 	"\x05login\x18\x01 \x01(\tR\x05login\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\x126\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\x12;\n" +
 	"\n" +
-	"colorTheme\x18\x03 \x01(\x0e2\x16.db_service.ColorThemeR\n" +
-	"colorTheme\"B\n" +
+	"colorTheme\x18\x03 \x01(\x0e2\x16.db_service.ColorThemeH\x00R\n" +
+	"colorTheme\x88\x01\x01B\r\n" +
+	"\v_colorTheme\"B\n" +
 	"\x12GetAllUsersRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x02 \x01(\x05R\x06offset\"^\n" +
@@ -721,6 +723,8 @@ func file_proto_user_proto_init() {
 	if File_proto_user_proto != nil {
 		return
 	}
+	file_proto_user_proto_msgTypes[0].OneofWrappers = []any{}
+	file_proto_user_proto_msgTypes[1].OneofWrappers = []any{}
 	file_proto_user_proto_msgTypes[5].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
