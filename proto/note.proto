@@ -43,8 +43,8 @@ message GetAllNotesResponse {
 
 message UpdateNoteRequest {
   int64 id = 1;
-  optional string new_title = 2;
-  optional string new_content = 3;
+  optional string title = 2;
+  optional string content = 3;
 }
 
 message DeleteNoteRequest {

@@ -147,8 +147,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
-| new_title | [string](#string) | optional |  |
-| new_content | [string](#string) | optional |  |
+| title | [string](#string) | optional |  |
+| content | [string](#string) | optional |  |
 
 
 
