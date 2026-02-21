@@ -24,6 +24,7 @@ message Note {
   int64 id = 1;
   string title = 2;
   string content = 3;
+  int64 userID = 4;
 }
 
 message GetNoteRequest {

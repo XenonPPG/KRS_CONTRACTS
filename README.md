@@ -132,6 +132,7 @@
 | id | [int64](#int64) |  |  |
 | title | [string](#string) |  |  |
 | content | [string](#string) |  |  |
+| userID | [int64](#int64) |  |  |
 
 
 
