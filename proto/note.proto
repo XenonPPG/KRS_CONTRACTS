@@ -29,6 +29,8 @@ message Note {
 
 message GetNoteRequest {
   int64 id = 1;
+  // for checking if note is owned by requesting user
+  int64 userID = 2;
 }
 
 message GetAllNotesRequest {
@@ -44,8 +46,10 @@ message GetAllNotesResponse {
 
 message UpdateNoteRequest {
   int64 id = 1;
-  optional string title = 2;
-  optional string content = 3;
+  // for checking if note is owned by requesting user
+  int64 userID = 2;
+  optional string title = 3;
+  optional string content = 4;
 }
 
 message DeleteNoteRequest {
