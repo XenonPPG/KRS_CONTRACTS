@@ -8,6 +8,4 @@ type User struct {
 	Password   string             `gorm:"not null" json:"password,omitempty" validate:"required,min=8"`
 	Role       user_v1.UserRole   `gorm:"type:integer;default:0" json:"role"`
 	ColorTheme user_v1.ColorTheme `gorm:"type:integer;default:0" json:"color_theme"`
-
-	Notes []Note `gorm:"foreignkey:UserID" json:"notes,omitempty"`
 }
