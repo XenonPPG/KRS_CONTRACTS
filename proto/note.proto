@@ -54,4 +54,6 @@ message UpdateNoteRequest {
 
 message DeleteNoteRequest {
   int64 id = 1;
+  // for checking if note is owned by requesting user
+  int64 userID = 2;
 }

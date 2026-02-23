@@ -67,6 +67,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [int64](#int64) |  |  |
+| userID | [int64](#int64) |  | for checking if note is owned by requesting user |
 
 
 

@@ -385,8 +385,10 @@ func (x *UpdateNoteRequest) GetContent() string {
 }
 
 type DeleteNoteRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Id    int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	// for checking if note is owned by requesting user
+	UserID        int64 `protobuf:"varint,2,opt,name=userID,proto3" json:"userID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -428,6 +430,13 @@ func (x *DeleteNoteRequest) GetId() int64 {
 	return 0
 }
 
+func (x *DeleteNoteRequest) GetUserID() int64 {
+	if x != nil {
+		return x.UserID
+	}
+	return 0
+}
+
 var File_proto_note_proto protoreflect.FileDescriptor
 
 const file_proto_note_proto_rawDesc = "" +
@@ -461,9 +470,10 @@ const file_proto_note_proto_rawDesc = "" +
 	"\acontent\x18\x04 \x01(\tH\x01R\acontent\x88\x01\x01B\b\n" +
 	"\x06_titleB\n" +
 	"\n" +
-	"\b_content\"#\n" +
+	"\b_content\";\n" +
 	"\x11DeleteNoteRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id2\xd9\x02\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x16\n" +
+	"\x06userID\x18\x02 \x01(\x03R\x06userID2\xd9\x02\n" +
 	"\vNoteService\x12=\n" +
 	"\n" +
 	"CreateNote\x12\x1d.db_service.CreateNoteRequest\x1a\x10.db_service.Note\x127\n" +
