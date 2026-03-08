@@ -3,6 +3,7 @@ syntax = "proto3";
 package db_service;
 
 import "google/protobuf/empty.proto";
+import "tagger/tagger.proto";
 
 option go_package = "github.com/XenonPPG/KRS_CONTRACTS/gen/note_v1;note_v1";
 
@@ -15,7 +16,7 @@ service NoteService {
 }
 
 message CreateNoteRequest {
-  int64 userID = 1;
+  int64 userID = 1 [(tagger.tags) = "swaggerignore:\"true\""];
   string title = 2;
   string content = 3;
 }
@@ -29,12 +30,11 @@ message Note {
 
 message GetNoteRequest {
   int64 id = 1;
-  // for checking if note is owned by requesting user
-  int64 userID = 2;
+  int64 userID = 2 [(tagger.tags) = "swaggerignore:\"true\""];
 }
 
 message GetAllNotesRequest {
-  int64 userID = 1;
+  int64 userID = 1 [(tagger.tags) = "swaggerignore:\"true\""];
   int32 limit = 2;
   int32 offset = 3;
 }
@@ -46,14 +46,12 @@ message GetAllNotesResponse {
 
 message UpdateNoteRequest {
   int64 id = 1;
-  // for checking if note is owned by requesting user
-  int64 userID = 2;
+  int64 userID = 2 [(tagger.tags) = "swaggerignore:\"true\""];
   optional string title = 3;
   optional string content = 4;
 }
 
 message DeleteNoteRequest {
   int64 id = 1;
-  // for checking if note is owned by requesting user
-  int64 userID = 2;
+  int64 userID = 2 [(tagger.tags) = "swaggerignore:\"true\""];
 }

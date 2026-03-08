@@ -7,6 +7,7 @@
 package note_v1
 
 import (
+	_ "github.com/srikrsna/protoc-gen-gotag/tagger"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -24,7 +25,7 @@ const (
 
 type CreateNoteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        int64                  `protobuf:"varint,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	UserID        int64                  `protobuf:"varint,1,opt,name=userID,proto3" json:"userID,omitempty" swaggerignore:"true"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Content       string                 `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -151,10 +152,9 @@ func (x *Note) GetUserID() int64 {
 }
 
 type GetNoteRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	Id    int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	// for checking if note is owned by requesting user
-	UserID        int64 `protobuf:"varint,2,opt,name=userID,proto3" json:"userID,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserID        int64                  `protobuf:"varint,2,opt,name=userID,proto3" json:"userID,omitempty" swaggerignore:"true"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -205,7 +205,7 @@ func (x *GetNoteRequest) GetUserID() int64 {
 
 type GetAllNotesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        int64                  `protobuf:"varint,1,opt,name=userID,proto3" json:"userID,omitempty"`
+	UserID        int64                  `protobuf:"varint,1,opt,name=userID,proto3" json:"userID,omitempty" swaggerignore:"true"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -316,12 +316,11 @@ func (x *GetAllNotesResponse) GetTotalCount() int32 {
 }
 
 type UpdateNoteRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	Id    int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	// for checking if note is owned by requesting user
-	UserID        int64   `protobuf:"varint,2,opt,name=userID,proto3" json:"userID,omitempty"`
-	Title         *string `protobuf:"bytes,3,opt,name=title,proto3,oneof" json:"title,omitempty"`
-	Content       *string `protobuf:"bytes,4,opt,name=content,proto3,oneof" json:"content,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserID        int64                  `protobuf:"varint,2,opt,name=userID,proto3" json:"userID,omitempty" swaggerignore:"true"`
+	Title         *string                `protobuf:"bytes,3,opt,name=title,proto3,oneof" json:"title,omitempty"`
+	Content       *string                `protobuf:"bytes,4,opt,name=content,proto3,oneof" json:"content,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -385,10 +384,9 @@ func (x *UpdateNoteRequest) GetContent() string {
 }
 
 type DeleteNoteRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	Id    int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	// for checking if note is owned by requesting user
-	UserID        int64 `protobuf:"varint,2,opt,name=userID,proto3" json:"userID,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserID        int64                  `protobuf:"varint,2,opt,name=userID,proto3" json:"userID,omitempty" swaggerignore:"true"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -442,38 +440,38 @@ var File_proto_note_proto protoreflect.FileDescriptor
 const file_proto_note_proto_rawDesc = "" +
 	"\n" +
 	"\x10proto/note.proto\x12\n" +
-	"db_service\x1a\x1bgoogle/protobuf/empty.proto\"[\n" +
-	"\x11CreateNoteRequest\x12\x16\n" +
-	"\x06userID\x18\x01 \x01(\x03R\x06userID\x12\x14\n" +
+	"db_service\x1a\x1bgoogle/protobuf/empty.proto\x1a\x13tagger/tagger.proto\"v\n" +
+	"\x11CreateNoteRequest\x121\n" +
+	"\x06userID\x18\x01 \x01(\x03B\x19\x9a\x84\x9e\x03\x14swaggerignore:\"true\"R\x06userID\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
 	"\acontent\x18\x03 \x01(\tR\acontent\"^\n" +
 	"\x04Note\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
 	"\acontent\x18\x03 \x01(\tR\acontent\x12\x16\n" +
-	"\x06userID\x18\x04 \x01(\x03R\x06userID\"8\n" +
+	"\x06userID\x18\x04 \x01(\x03R\x06userID\"S\n" +
 	"\x0eGetNoteRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x16\n" +
-	"\x06userID\x18\x02 \x01(\x03R\x06userID\"Z\n" +
-	"\x12GetAllNotesRequest\x12\x16\n" +
-	"\x06userID\x18\x01 \x01(\x03R\x06userID\x12\x14\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x121\n" +
+	"\x06userID\x18\x02 \x01(\x03B\x19\x9a\x84\x9e\x03\x14swaggerignore:\"true\"R\x06userID\"u\n" +
+	"\x12GetAllNotesRequest\x121\n" +
+	"\x06userID\x18\x01 \x01(\x03B\x19\x9a\x84\x9e\x03\x14swaggerignore:\"true\"R\x06userID\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x03 \x01(\x05R\x06offset\"^\n" +
 	"\x13GetAllNotesResponse\x12&\n" +
 	"\x05notes\x18\x01 \x03(\v2\x10.db_service.NoteR\x05notes\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
-	"totalCount\"\x8b\x01\n" +
+	"totalCount\"\xa6\x01\n" +
 	"\x11UpdateNoteRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x16\n" +
-	"\x06userID\x18\x02 \x01(\x03R\x06userID\x12\x19\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x121\n" +
+	"\x06userID\x18\x02 \x01(\x03B\x19\x9a\x84\x9e\x03\x14swaggerignore:\"true\"R\x06userID\x12\x19\n" +
 	"\x05title\x18\x03 \x01(\tH\x00R\x05title\x88\x01\x01\x12\x1d\n" +
 	"\acontent\x18\x04 \x01(\tH\x01R\acontent\x88\x01\x01B\b\n" +
 	"\x06_titleB\n" +
 	"\n" +
-	"\b_content\";\n" +
+	"\b_content\"V\n" +
 	"\x11DeleteNoteRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x16\n" +
-	"\x06userID\x18\x02 \x01(\x03R\x06userID2\xd9\x02\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x121\n" +
+	"\x06userID\x18\x02 \x01(\x03B\x19\x9a\x84\x9e\x03\x14swaggerignore:\"true\"R\x06userID2\xd9\x02\n" +
 	"\vNoteService\x12=\n" +
 	"\n" +
 	"CreateNote\x12\x1d.db_service.CreateNoteRequest\x1a\x10.db_service.Note\x127\n" +
