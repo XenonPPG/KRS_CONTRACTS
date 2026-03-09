@@ -135,6 +135,7 @@
 | title | [string](#string) |  |  |
 | content | [string](#string) |  |  |
 | userID | [int64](#int64) |  |  |
+| createdAt | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 
 
 
