@@ -85,6 +85,7 @@
 | userID | [int64](#int64) |  |  |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| ascendingOrder | [bool](#bool) |  |  |
 
 
 
@@ -234,6 +235,7 @@
 | ----- | ---- | ----- | ----------- |
 | limit | [int32](#int32) |  |  |
 | offset | [int32](#int32) |  |  |
+| ascendingOrder | [bool](#bool) |  |  |
 
 
 

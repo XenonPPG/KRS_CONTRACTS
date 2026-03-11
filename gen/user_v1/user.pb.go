@@ -274,11 +274,12 @@ func (x *CreateUserRequest) GetColorTheme() ColorTheme {
 }
 
 type GetAllUsersRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
-	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Limit          int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset         int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
+	AscendingOrder bool                   `protobuf:"varint,3,opt,name=ascendingOrder,proto3" json:"ascendingOrder,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *GetAllUsersRequest) Reset() {
@@ -323,6 +324,13 @@ func (x *GetAllUsersRequest) GetOffset() int32 {
 		return x.Offset
 	}
 	return 0
+}
+
+func (x *GetAllUsersRequest) GetAscendingOrder() bool {
+	if x != nil {
+		return x.AscendingOrder
+	}
+	return false
 }
 
 type GetAllUsersResponse struct {
@@ -661,10 +669,11 @@ const file_proto_user_proto_rawDesc = "" +
 	"\n" +
 	"colorTheme\x18\x04 \x01(\x0e2\x16.db_service.ColorThemeH\x00R\n" +
 	"colorTheme\x88\x01\x01B\r\n" +
-	"\v_colorTheme\"B\n" +
+	"\v_colorTheme\"j\n" +
 	"\x12GetAllUsersRequest\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x02 \x01(\x05R\x06offset\"^\n" +
+	"\x06offset\x18\x02 \x01(\x05R\x06offset\x12&\n" +
+	"\x0eascendingOrder\x18\x03 \x01(\bR\x0eascendingOrder\"^\n" +
 	"\x13GetAllUsersResponse\x12&\n" +
 	"\x05users\x18\x01 \x03(\v2\x10.db_service.UserR\x05users\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +

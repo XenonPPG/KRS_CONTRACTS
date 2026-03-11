@@ -221,12 +221,13 @@ func (x *GetNoteRequest) GetUserID() int64 {
 }
 
 type GetAllNotesRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        int64                  `protobuf:"varint,1,opt,name=userID,proto3" json:"userID,omitempty" swaggerignore:"true"`
-	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
-	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	UserID         int64                  `protobuf:"varint,1,opt,name=userID,proto3" json:"userID,omitempty" swaggerignore:"true"`
+	Limit          int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset         int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
+	AscendingOrder bool                   `protobuf:"varint,4,opt,name=ascendingOrder,proto3" json:"ascendingOrder,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *GetAllNotesRequest) Reset() {
@@ -278,6 +279,13 @@ func (x *GetAllNotesRequest) GetOffset() int32 {
 		return x.Offset
 	}
 	return 0
+}
+
+func (x *GetAllNotesRequest) GetAscendingOrder() bool {
+	if x != nil {
+		return x.AscendingOrder
+	}
+	return false
 }
 
 type GetAllNotesResponse struct {
@@ -471,11 +479,12 @@ const file_proto_note_proto_rawDesc = "" +
 	"\tupdatedAt\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"S\n" +
 	"\x0eGetNoteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x121\n" +
-	"\x06userID\x18\x02 \x01(\x03B\x19\x9a\x84\x9e\x03\x14swaggerignore:\"true\"R\x06userID\"u\n" +
+	"\x06userID\x18\x02 \x01(\x03B\x19\x9a\x84\x9e\x03\x14swaggerignore:\"true\"R\x06userID\"\x9d\x01\n" +
 	"\x12GetAllNotesRequest\x121\n" +
 	"\x06userID\x18\x01 \x01(\x03B\x19\x9a\x84\x9e\x03\x14swaggerignore:\"true\"R\x06userID\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"^\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\x12&\n" +
+	"\x0eascendingOrder\x18\x04 \x01(\bR\x0eascendingOrder\"^\n" +
 	"\x13GetAllNotesResponse\x12&\n" +
 	"\x05notes\x18\x01 \x03(\v2\x10.db_service.NoteR\x05notes\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
