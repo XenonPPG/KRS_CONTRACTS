@@ -136,6 +136,7 @@
 | content | [string](#string) |  |  |
 | userID | [int64](#int64) |  |  |
 | createdAt | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| updatedAt | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 
 
 
@@ -332,6 +333,8 @@
 | login | [string](#string) |  |  |
 | role | [UserRole](#db_service-UserRole) | optional |  |
 | colorTheme | [ColorTheme](#db_service-ColorTheme) | optional |  |
+| createdAt | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| updatedAt | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
 
 
 

@@ -91,6 +91,7 @@ type Note struct {
 	Content       string                 `protobuf:"bytes,3,opt,name=content,proto3" json:"content,omitempty"`
 	UserID        int64                  `protobuf:"varint,4,opt,name=userID,proto3" json:"userID,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -156,6 +157,13 @@ func (x *Note) GetUserID() int64 {
 func (x *Note) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *Note) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
 	}
 	return nil
 }
@@ -453,13 +461,14 @@ const file_proto_note_proto_rawDesc = "" +
 	"\x11CreateNoteRequest\x121\n" +
 	"\x06userID\x18\x01 \x01(\x03B\x19\x9a\x84\x9e\x03\x14swaggerignore:\"true\"R\x06userID\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
-	"\acontent\x18\x03 \x01(\tR\acontent\"\x98\x01\n" +
+	"\acontent\x18\x03 \x01(\tR\acontent\"\xd2\x01\n" +
 	"\x04Note\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x18\n" +
 	"\acontent\x18\x03 \x01(\tR\acontent\x12\x16\n" +
 	"\x06userID\x18\x04 \x01(\x03R\x06userID\x128\n" +
-	"\tcreatedAt\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"S\n" +
+	"\tcreatedAt\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x128\n" +
+	"\tupdatedAt\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"S\n" +
 	"\x0eGetNoteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x121\n" +
 	"\x06userID\x18\x02 \x01(\x03B\x19\x9a\x84\x9e\x03\x14swaggerignore:\"true\"R\x06userID\"u\n" +
@@ -518,22 +527,23 @@ var file_proto_note_proto_goTypes = []any{
 }
 var file_proto_note_proto_depIdxs = []int32{
 	7, // 0: db_service.Note.createdAt:type_name -> google.protobuf.Timestamp
-	1, // 1: db_service.GetAllNotesResponse.notes:type_name -> db_service.Note
-	0, // 2: db_service.NoteService.CreateNote:input_type -> db_service.CreateNoteRequest
-	2, // 3: db_service.NoteService.GetNote:input_type -> db_service.GetNoteRequest
-	3, // 4: db_service.NoteService.GetAllNotes:input_type -> db_service.GetAllNotesRequest
-	5, // 5: db_service.NoteService.UpdateNote:input_type -> db_service.UpdateNoteRequest
-	6, // 6: db_service.NoteService.DeleteNote:input_type -> db_service.DeleteNoteRequest
-	1, // 7: db_service.NoteService.CreateNote:output_type -> db_service.Note
-	1, // 8: db_service.NoteService.GetNote:output_type -> db_service.Note
-	4, // 9: db_service.NoteService.GetAllNotes:output_type -> db_service.GetAllNotesResponse
-	1, // 10: db_service.NoteService.UpdateNote:output_type -> db_service.Note
-	8, // 11: db_service.NoteService.DeleteNote:output_type -> google.protobuf.Empty
-	7, // [7:12] is the sub-list for method output_type
-	2, // [2:7] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	7, // 1: db_service.Note.updatedAt:type_name -> google.protobuf.Timestamp
+	1, // 2: db_service.GetAllNotesResponse.notes:type_name -> db_service.Note
+	0, // 3: db_service.NoteService.CreateNote:input_type -> db_service.CreateNoteRequest
+	2, // 4: db_service.NoteService.GetNote:input_type -> db_service.GetNoteRequest
+	3, // 5: db_service.NoteService.GetAllNotes:input_type -> db_service.GetAllNotesRequest
+	5, // 6: db_service.NoteService.UpdateNote:input_type -> db_service.UpdateNoteRequest
+	6, // 7: db_service.NoteService.DeleteNote:input_type -> db_service.DeleteNoteRequest
+	1, // 8: db_service.NoteService.CreateNote:output_type -> db_service.Note
+	1, // 9: db_service.NoteService.GetNote:output_type -> db_service.Note
+	4, // 10: db_service.NoteService.GetAllNotes:output_type -> db_service.GetAllNotesResponse
+	1, // 11: db_service.NoteService.UpdateNote:output_type -> db_service.Note
+	8, // 12: db_service.NoteService.DeleteNote:output_type -> google.protobuf.Empty
+	8, // [8:13] is the sub-list for method output_type
+	3, // [3:8] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_proto_note_proto_init() }

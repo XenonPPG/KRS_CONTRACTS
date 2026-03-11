@@ -10,6 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -126,6 +127,8 @@ type User struct {
 	Login         string                 `protobuf:"bytes,2,opt,name=login,proto3" json:"login,omitempty"`
 	Role          *UserRole              `protobuf:"varint,3,opt,name=role,proto3,enum=db_service.UserRole,oneof" json:"role,omitempty"`
 	ColorTheme    *ColorTheme            `protobuf:"varint,4,opt,name=colorTheme,proto3,enum=db_service.ColorTheme,oneof" json:"colorTheme,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -186,6 +189,20 @@ func (x *User) GetColorTheme() ColorTheme {
 		return *x.ColorTheme
 	}
 	return ColorTheme_UNSPECIFIED
+}
+
+func (x *User) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *User) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
 }
 
 type CreateUserRequest struct {
@@ -625,14 +642,16 @@ var File_proto_user_proto protoreflect.FileDescriptor
 const file_proto_user_proto_rawDesc = "" +
 	"\n" +
 	"\x10proto/user.proto\x12\n" +
-	"db_service\x1a\x1bgoogle/protobuf/empty.proto\"\xb0\x01\n" +
+	"db_service\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa4\x02\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
 	"\x05login\x18\x02 \x01(\tR\x05login\x12-\n" +
 	"\x04role\x18\x03 \x01(\x0e2\x14.db_service.UserRoleH\x00R\x04role\x88\x01\x01\x12;\n" +
 	"\n" +
 	"colorTheme\x18\x04 \x01(\x0e2\x16.db_service.ColorThemeH\x01R\n" +
-	"colorTheme\x88\x01\x01B\a\n" +
+	"colorTheme\x88\x01\x01\x128\n" +
+	"\tcreatedAt\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x128\n" +
+	"\tupdatedAt\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\a\n" +
 	"\x05_roleB\r\n" +
 	"\v_colorTheme\"\xbb\x01\n" +
 	"\x11CreateUserRequest\x12\x14\n" +
@@ -717,35 +736,38 @@ var file_proto_user_proto_goTypes = []any{
 	(*UpdatePasswordRequest)(nil), // 8: db_service.UpdatePasswordRequest
 	(*DeleteUserRequest)(nil),     // 9: db_service.DeleteUserRequest
 	(*LoginRequest)(nil),          // 10: db_service.LoginRequest
-	(*emptypb.Empty)(nil),         // 11: google.protobuf.Empty
+	(*timestamppb.Timestamp)(nil), // 11: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),         // 12: google.protobuf.Empty
 }
 var file_proto_user_proto_depIdxs = []int32{
 	1,  // 0: db_service.User.role:type_name -> db_service.UserRole
 	0,  // 1: db_service.User.colorTheme:type_name -> db_service.ColorTheme
-	1,  // 2: db_service.CreateUserRequest.role:type_name -> db_service.UserRole
-	0,  // 3: db_service.CreateUserRequest.colorTheme:type_name -> db_service.ColorTheme
-	2,  // 4: db_service.GetAllUsersResponse.users:type_name -> db_service.User
-	1,  // 5: db_service.UpdateUserRequest.role:type_name -> db_service.UserRole
-	0,  // 6: db_service.UpdateUserRequest.colorTheme:type_name -> db_service.ColorTheme
-	3,  // 7: db_service.UserService.CreateUser:input_type -> db_service.CreateUserRequest
-	4,  // 8: db_service.UserService.GetAllUsers:input_type -> db_service.GetAllUsersRequest
-	6,  // 9: db_service.UserService.GetUser:input_type -> db_service.GetUserRequest
-	7,  // 10: db_service.UserService.UpdateUser:input_type -> db_service.UpdateUserRequest
-	8,  // 11: db_service.UserService.UpdatePassword:input_type -> db_service.UpdatePasswordRequest
-	9,  // 12: db_service.UserService.DeleteUser:input_type -> db_service.DeleteUserRequest
-	10, // 13: db_service.UserService.Login:input_type -> db_service.LoginRequest
-	2,  // 14: db_service.UserService.CreateUser:output_type -> db_service.User
-	5,  // 15: db_service.UserService.GetAllUsers:output_type -> db_service.GetAllUsersResponse
-	2,  // 16: db_service.UserService.GetUser:output_type -> db_service.User
-	2,  // 17: db_service.UserService.UpdateUser:output_type -> db_service.User
-	11, // 18: db_service.UserService.UpdatePassword:output_type -> google.protobuf.Empty
-	11, // 19: db_service.UserService.DeleteUser:output_type -> google.protobuf.Empty
-	2,  // 20: db_service.UserService.Login:output_type -> db_service.User
-	14, // [14:21] is the sub-list for method output_type
-	7,  // [7:14] is the sub-list for method input_type
-	7,  // [7:7] is the sub-list for extension type_name
-	7,  // [7:7] is the sub-list for extension extendee
-	0,  // [0:7] is the sub-list for field type_name
+	11, // 2: db_service.User.createdAt:type_name -> google.protobuf.Timestamp
+	11, // 3: db_service.User.updatedAt:type_name -> google.protobuf.Timestamp
+	1,  // 4: db_service.CreateUserRequest.role:type_name -> db_service.UserRole
+	0,  // 5: db_service.CreateUserRequest.colorTheme:type_name -> db_service.ColorTheme
+	2,  // 6: db_service.GetAllUsersResponse.users:type_name -> db_service.User
+	1,  // 7: db_service.UpdateUserRequest.role:type_name -> db_service.UserRole
+	0,  // 8: db_service.UpdateUserRequest.colorTheme:type_name -> db_service.ColorTheme
+	3,  // 9: db_service.UserService.CreateUser:input_type -> db_service.CreateUserRequest
+	4,  // 10: db_service.UserService.GetAllUsers:input_type -> db_service.GetAllUsersRequest
+	6,  // 11: db_service.UserService.GetUser:input_type -> db_service.GetUserRequest
+	7,  // 12: db_service.UserService.UpdateUser:input_type -> db_service.UpdateUserRequest
+	8,  // 13: db_service.UserService.UpdatePassword:input_type -> db_service.UpdatePasswordRequest
+	9,  // 14: db_service.UserService.DeleteUser:input_type -> db_service.DeleteUserRequest
+	10, // 15: db_service.UserService.Login:input_type -> db_service.LoginRequest
+	2,  // 16: db_service.UserService.CreateUser:output_type -> db_service.User
+	5,  // 17: db_service.UserService.GetAllUsers:output_type -> db_service.GetAllUsersResponse
+	2,  // 18: db_service.UserService.GetUser:output_type -> db_service.User
+	2,  // 19: db_service.UserService.UpdateUser:output_type -> db_service.User
+	12, // 20: db_service.UserService.UpdatePassword:output_type -> google.protobuf.Empty
+	12, // 21: db_service.UserService.DeleteUser:output_type -> google.protobuf.Empty
+	2,  // 22: db_service.UserService.Login:output_type -> db_service.User
+	16, // [16:23] is the sub-list for method output_type
+	9,  // [9:16] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_proto_init() }
