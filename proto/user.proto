@@ -69,6 +69,7 @@ message UpdateUserRequest {
 
 message UpdatePasswordRequest {
   int64 id = 1;
+  string oldPassword = 2;
   string newPassword = 3;
 }
 
