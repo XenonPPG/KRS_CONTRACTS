@@ -353,7 +353,7 @@
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| UNSPECIFIED | 0 |  |
+| THEME_UNSPECIFIED | 0 |  |
 | AUTO | 1 |  |
 | LIGHT | 2 |  |
 | DARK | 3 |  |
@@ -367,8 +367,9 @@
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| DEFAULT | 0 |  |
-| ADMIN | 1 |  |
+| ROLE_UNSPECIFIED | 0 |  |
+| DEFAULT | 1 |  |
+| ADMIN | 2 |  |
 
 
  

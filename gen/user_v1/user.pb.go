@@ -26,25 +26,25 @@ const (
 type ColorTheme int32
 
 const (
-	ColorTheme_UNSPECIFIED ColorTheme = 0
-	ColorTheme_AUTO        ColorTheme = 1
-	ColorTheme_LIGHT       ColorTheme = 2
-	ColorTheme_DARK        ColorTheme = 3
+	ColorTheme_THEME_UNSPECIFIED ColorTheme = 0
+	ColorTheme_AUTO              ColorTheme = 1
+	ColorTheme_LIGHT             ColorTheme = 2
+	ColorTheme_DARK              ColorTheme = 3
 )
 
 // Enum value maps for ColorTheme.
 var (
 	ColorTheme_name = map[int32]string{
-		0: "UNSPECIFIED",
+		0: "THEME_UNSPECIFIED",
 		1: "AUTO",
 		2: "LIGHT",
 		3: "DARK",
 	}
 	ColorTheme_value = map[string]int32{
-		"UNSPECIFIED": 0,
-		"AUTO":        1,
-		"LIGHT":       2,
-		"DARK":        3,
+		"THEME_UNSPECIFIED": 0,
+		"AUTO":              1,
+		"LIGHT":             2,
+		"DARK":              3,
 	}
 )
 
@@ -78,19 +78,22 @@ func (ColorTheme) EnumDescriptor() ([]byte, []int) {
 type UserRole int32
 
 const (
-	UserRole_DEFAULT UserRole = 0
-	UserRole_ADMIN   UserRole = 1
+	UserRole_ROLE_UNSPECIFIED UserRole = 0
+	UserRole_DEFAULT          UserRole = 1
+	UserRole_ADMIN            UserRole = 2
 )
 
 // Enum value maps for UserRole.
 var (
 	UserRole_name = map[int32]string{
-		0: "DEFAULT",
-		1: "ADMIN",
+		0: "ROLE_UNSPECIFIED",
+		1: "DEFAULT",
+		2: "ADMIN",
 	}
 	UserRole_value = map[string]int32{
-		"DEFAULT": 0,
-		"ADMIN":   1,
+		"ROLE_UNSPECIFIED": 0,
+		"DEFAULT":          1,
+		"ADMIN":            2,
 	}
 )
 
@@ -181,14 +184,14 @@ func (x *User) GetRole() UserRole {
 	if x != nil && x.Role != nil {
 		return *x.Role
 	}
-	return UserRole_DEFAULT
+	return UserRole_ROLE_UNSPECIFIED
 }
 
 func (x *User) GetColorTheme() ColorTheme {
 	if x != nil && x.ColorTheme != nil {
 		return *x.ColorTheme
 	}
-	return ColorTheme_UNSPECIFIED
+	return ColorTheme_THEME_UNSPECIFIED
 }
 
 func (x *User) GetCreatedAt() *timestamppb.Timestamp {
@@ -263,14 +266,14 @@ func (x *CreateUserRequest) GetRole() UserRole {
 	if x != nil {
 		return x.Role
 	}
-	return UserRole_DEFAULT
+	return UserRole_ROLE_UNSPECIFIED
 }
 
 func (x *CreateUserRequest) GetColorTheme() ColorTheme {
 	if x != nil && x.ColorTheme != nil {
 		return *x.ColorTheme
 	}
-	return ColorTheme_UNSPECIFIED
+	return ColorTheme_THEME_UNSPECIFIED
 }
 
 type GetAllUsersRequest struct {
@@ -487,14 +490,14 @@ func (x *UpdateUserRequest) GetRole() UserRole {
 	if x != nil && x.Role != nil {
 		return *x.Role
 	}
-	return UserRole_DEFAULT
+	return UserRole_ROLE_UNSPECIFIED
 }
 
 func (x *UpdateUserRequest) GetColorTheme() ColorTheme {
 	if x != nil && x.ColorTheme != nil {
 		return *x.ColorTheme
 	}
-	return ColorTheme_UNSPECIFIED
+	return ColorTheme_THEME_UNSPECIFIED
 }
 
 type UpdatePasswordRequest struct {
@@ -706,16 +709,17 @@ const file_proto_user_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"@\n" +
 	"\fLoginRequest\x12\x14\n" +
 	"\x05login\x18\x01 \x01(\tR\x05login\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword*<\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword*B\n" +
 	"\n" +
-	"ColorTheme\x12\x0f\n" +
-	"\vUNSPECIFIED\x10\x00\x12\b\n" +
+	"ColorTheme\x12\x15\n" +
+	"\x11THEME_UNSPECIFIED\x10\x00\x12\b\n" +
 	"\x04AUTO\x10\x01\x12\t\n" +
 	"\x05LIGHT\x10\x02\x12\b\n" +
-	"\x04DARK\x10\x03*\"\n" +
-	"\bUserRole\x12\v\n" +
-	"\aDEFAULT\x10\x00\x12\t\n" +
-	"\x05ADMIN\x10\x012\xdb\x03\n" +
+	"\x04DARK\x10\x03*8\n" +
+	"\bUserRole\x12\x14\n" +
+	"\x10ROLE_UNSPECIFIED\x10\x00\x12\v\n" +
+	"\aDEFAULT\x10\x01\x12\t\n" +
+	"\x05ADMIN\x10\x022\xdb\x03\n" +
 	"\vUserService\x12=\n" +
 	"\n" +
 	"CreateUser\x12\x1d.db_service.CreateUserRequest\x1a\x10.db_service.User\x12N\n" +
