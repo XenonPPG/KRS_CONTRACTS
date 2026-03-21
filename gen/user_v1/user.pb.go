@@ -502,9 +502,10 @@ func (x *UpdateUserRequest) GetColorTheme() ColorTheme {
 
 type UpdatePasswordRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	OldPassword   string                 `protobuf:"bytes,2,opt,name=oldPassword,proto3" json:"oldPassword,omitempty"`
-	NewPassword   string                 `protobuf:"bytes,3,opt,name=newPassword,proto3" json:"newPassword,omitempty"`
+	SenderId      int64                  `protobuf:"varint,1,opt,name=senderId,proto3" json:"senderId,omitempty"`
+	ReceiverId    int64                  `protobuf:"varint,2,opt,name=receiverId,proto3" json:"receiverId,omitempty"`
+	OldPassword   string                 `protobuf:"bytes,3,opt,name=oldPassword,proto3" json:"oldPassword,omitempty"`
+	NewPassword   string                 `protobuf:"bytes,4,opt,name=newPassword,proto3" json:"newPassword,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -539,9 +540,16 @@ func (*UpdatePasswordRequest) Descriptor() ([]byte, []int) {
 	return file_proto_user_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *UpdatePasswordRequest) GetId() int64 {
+func (x *UpdatePasswordRequest) GetSenderId() int64 {
 	if x != nil {
-		return x.Id
+		return x.SenderId
+	}
+	return 0
+}
+
+func (x *UpdatePasswordRequest) GetReceiverId() int64 {
+	if x != nil {
+		return x.ReceiverId
 	}
 	return 0
 }
@@ -700,11 +708,14 @@ const file_proto_user_proto_rawDesc = "" +
 	"colorTheme\x88\x01\x01B\b\n" +
 	"\x06_loginB\a\n" +
 	"\x05_roleB\r\n" +
-	"\v_colorTheme\"k\n" +
-	"\x15UpdatePasswordRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12 \n" +
-	"\voldPassword\x18\x02 \x01(\tR\voldPassword\x12 \n" +
-	"\vnewPassword\x18\x03 \x01(\tR\vnewPassword\"#\n" +
+	"\v_colorTheme\"\x97\x01\n" +
+	"\x15UpdatePasswordRequest\x12\x1a\n" +
+	"\bsenderId\x18\x01 \x01(\x03R\bsenderId\x12\x1e\n" +
+	"\n" +
+	"receiverId\x18\x02 \x01(\x03R\n" +
+	"receiverId\x12 \n" +
+	"\voldPassword\x18\x03 \x01(\tR\voldPassword\x12 \n" +
+	"\vnewPassword\x18\x04 \x01(\tR\vnewPassword\"#\n" +
 	"\x11DeleteUserRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"@\n" +
 	"\fLoginRequest\x12\x14\n" +

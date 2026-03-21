@@ -297,7 +297,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [int64](#int64) |  |  |
+| senderId | [int64](#int64) |  |  |
+| receiverId | [int64](#int64) |  |  |
 | oldPassword | [string](#string) |  |  |
 | newPassword | [string](#string) |  |  |
 
