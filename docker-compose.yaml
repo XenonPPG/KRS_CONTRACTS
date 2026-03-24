@@ -32,4 +32,4 @@ services:
       /bin/sh -c "mkdir -p doc && 
       protoc -I. --doc_out=./doc --doc_opt=markdown,index.md proto/*.proto && 
       protoc -I. --doc_out=./doc --doc_opt=html,index.html proto/*.proto &&
-      protoc -I. --doc_out=./ --doc_opt=markdown,README.md proto/*.proto"
+      cat ./description.md ./doc/index.md > ./README.md"
