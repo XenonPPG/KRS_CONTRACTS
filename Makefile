@@ -9,4 +9,4 @@ generate-proto:
 	docker-compose run --rm protodoc
 	docker-compose down --rmi local
 
-.PHONY: generate-doc, generate-protod\
+.PHONY: generate-doc, generate-proto
